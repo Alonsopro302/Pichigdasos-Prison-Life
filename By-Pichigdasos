@@ -4,527 +4,14 @@ local Yellow = Color3.fromHex("#FFD21F")
 local DarkYellow = Color3.fromHex("#9C7800")
 local Black = Color3.fromHex("#080808")
 
--- ============================================================
--- SISTEMA DE TRADUCCION MEJORADO 2.0
--- Accede directamente a las instancias GUI de Roblox
--- ============================================================
-local currentLang = "es"
-
-local translations = {
-    es = {
-        -- Ventana y boton de apertura
-        WindowTitle = "Chituk Hub",
-        OpenButtonTitle = "Chituk Hub",
-        
-        -- Secciones PRINCIPALES (barra lateral)
-        Sec_Main = "Main",
-        Sec_Protecciones = "Protecciones",
-        Sec_Armas = "Armas",
-        Sec_ESP = "ESP",
-        Sec_AimBot = "AimBot",
-        Sec_Creditos = "Creditos",
-        Sec_Idioma = "Idioma",
-        
-        -- Nombres de pestañas
-        Tab_Main = "Main",
-        Tab_Protecciones = "Protecciones",
-        Tab_Armas = "Armas",
-        Tab_ESP = "ESP",
-        Tab_AimBot = "AimBot",
-        Tab_Creditos = "Creditos",
-        Tab_Idioma = "Idioma",
-        
-        -- ============ TEXTOS DE LA UI ============
-        
-        -- Main
-        Main_HubTitle = "CHITUK HUB",
-        Main_Welcome = "Bienvenido a Chituk Hub",
-        Main_WarningImportant = "⚠️ ADVERTENCIA IMPORTANTE",
-        Main_WarningText = "¿Estás seguro que quieres usar este script?\nPodrías ser baneado de Prison Life al usarlo incorrectamente.",
-        
-        -- VFly
-        Main_VFly = "Vfly (Funciona Con Autos y tambien es un Fly Normal)",
-        FlyGui_Title = "Chituk Hub Fly Gui",
-        Fly_Fly = "Fly",
-        Fly_UnFly = "UnFly",
-        
-        -- Velocidad
-        Main_EnableSpeed = "Activar Velocidad",
-        Main_SpeedLimit = "Velocidad (limite 300)",
-        
-        -- Salto
-        Main_InfiniteJump = "Salto Infinito",
-        
-        -- FullBright
-        Main_FullBright = "FullBright / Iluminacion Completa",
-        
-        -- FPS Boost
-        Main_FPSBoost = "FPS Boost",
-        
-        -- Auto Escapar
-        Main_AutoEscape = "Auto Escapar Prision",
-        Main_AutoEscapeDesc = "Teletransporta al contenedor y se suicida",
-        
-        -- Keycard
-        Main_AutoKeycard = "Auto Conseguir Keycard",
-        Main_AutoKeycardDesc = "Obtiene la keycard automaticamente",
-        
-        -- Protecciones
-        Prot_Title = "PROTECCIONES",
-        Prot_Desc = "Anti Arrest y Anti Taser",
-        Prot_AntiArrest = "Anti Arrest",
-        Prot_AntiTaser = "Anti Taser",
-        
-        -- Armas
-        Weap_Intro = "Consigue Las Armas Disponibles De Una Manera mas facil",
-        Weap_GetAll = "Obtener Todas las Armas",
-        Weap_GetAllDesc = "TP automatico a todos los spawners",
-        Weap_SelectSpecific = "Seleccionar Arma Especifica",
-        Weap_DropdownTitle = "Arma",
-        Weap_GetSelected = "Obtener Arma Seleccionada",
-        Weap_GetSelectedDesc = "TP al spawner del arma elegida",
-        
-        -- ESP
-        ESP_Title = "ESP",
-        ESP_Options = "Opciones de ESP",
-        ESP_Enable = "Activar ESP",
-        ESP_ShowNames = "Mostrar nombres",
-        ESP_ShowTracers = "Mostrar tracers (líneas)",
-        ESP_TeamColors = "Colores por equipo (rojo enemigo, verde aliado)",
-        
-        -- AimBot
-        Aim_Title = "AIMBOT",
-        Aim_Options = "Opciones de AimBot",
-        Aim_Enable = "Activar AimBot",
-        Aim_FOV = "FOV (rango 10-300)",
-        Aim_IgnoreTeam = "Ignorar compañeros de equipo",
-        Aim_IgnoreDead = "Ignorar jugadores muertos",
-        Aim_IgnoreWalls = "Ignorar detrás de paredes",
-        Aim_BodyPart = "Parte del cuerpo",
-        
-        -- Creditos
-        Cred_Title = "CREDITOS",
-        Cred_ThanksTo = "Agradecimientos especiales a:",
-        Cred_ThanksUser = "Y A ti por usar el Script",
-        
-        -- Creditos botones (nombres se mantienen, pero descripciones de notificacion si)
-        Cred_TikTokBtn = "Pichigdasos Tiktok (Dev)",
-        Cred_DiscordBtn = "Pichigdasos User De Discord",
-        Cred_YouTubeBtn = "Chituk Youtube",
-        Cred_DiscordServerBtn = "Chituk Server De Discord",
-        
-        -- Idioma
-        Lang_Title = "IDIOMA",
-        Lang_Desc = "Selecciona tu idioma preferido",
-        Lang_Select = "Seleccionar Idioma",
-        Lang_Spanish = "Español",
-        Lang_English = "Ingles",
-        
-        -- ============ NOTIFICACIONES ============
-        Notif_Important = "Aviso Importante",
-        Notif_Warning = "¿Estas Seguro que quieres usar este script?\nPodrias ser baneado de Prison Life al usarlo incorrectamente",
-        Notif_Success = "Exito",
-        Notif_Error = "Error",
-        Notif_Info = "Info",
-        Notif_Ready = "Listo",
-        Notif_Copied = "Copiado!",
-        
-        Notif_KeycardSuccess = "Keycard obtenida correctamente",
-        Notif_KeycardError = "No se pudo obtener la keycard",
-        Notif_PosNotFound = "Posición no encontrada para",
-        Notif_TouchGiverNotFound = "No se encontró el TouchGiver para",
-        Notif_CharNotFound = "Personaje no encontrado",
-        Notif_GunSuccess = "Obtuviste:",
-        Notif_GunError = "No se pudo obtener",
-        Notif_AlreadyHaveGun = "Ya tienes:",
-        Notif_AlreadyAllGuns = "Ya tienes todas las armas",
-        Notif_GunsObtained = "arma(s) obtenida(s)",
-        Notif_TikTokCopied = "Enlace de TikTok copiado al portapapeles",
-        Notif_DiscordCopied = "Usuario de Discord copiado al portapapeles",
-        Notif_YouTubeCopied = "Enlace de YouTube copiado al portapapeles",
-        Notif_DiscordServerCopied = "Enlace del servidor de Discord copiado al portapapeles",
-        Notif_LangChangedES = "Idioma cambiado a Español",
-        Notif_LangChangedEN = "Language changed to English",
-        
-        -- Body parts dropdown
-        BP_Head = "Head",
-        BP_Torso = "Torso",
-        BP_HumanoidRootPart = "HumanoidRootPart",
-        BP_LeftLeg = "LeftLeg",
-        BP_RightLeg = "RightLeg",
-    },
-    en = {
-        -- Window and open button
-        WindowTitle = "Chituk Hub",
-        OpenButtonTitle = "Chituk Hub",
-        
-        -- MAIN sections (sidebar)
-        Sec_Main = "Main",
-        Sec_Protecciones = "Protections",
-        Sec_Armas = "Weapons",
-        Sec_ESP = "ESP",
-        Sec_AimBot = "AimBot",
-        Sec_Creditos = "Credits",
-        Sec_Idioma = "Language",
-        
-        -- Tab names
-        Tab_Main = "Main",
-        Tab_Protecciones = "Protections",
-        Tab_Armas = "Weapons",
-        Tab_ESP = "ESP",
-        Tab_AimBot = "AimBot",
-        Tab_Creditos = "Credits",
-        Tab_Idioma = "Language",
-        
-        -- ============ UI TEXTS ============
-        
-        -- Main
-        Main_HubTitle = "CHITUK HUB",
-        Main_Welcome = "Welcome to Chituk Hub",
-        Main_WarningImportant = "⚠️ IMPORTANT WARNING",
-        Main_WarningText = "Are you sure you want to use this script?\nYou could be banned from Prison Life if used incorrectly.",
-        
-        -- VFly
-        Main_VFly = "Vfly (Works With Cars and also is a Normal Fly)",
-        FlyGui_Title = "Chituk Hub Fly Gui",
-        Fly_Fly = "Fly",
-        Fly_UnFly = "UnFly",
-        
-        -- Speed
-        Main_EnableSpeed = "Enable Speed",
-        Main_SpeedLimit = "Speed (limit 300)",
-        
-        -- Jump
-        Main_InfiniteJump = "Infinite Jump",
-        
-        -- FullBright
-        Main_FullBright = "FullBright / Full Lighting",
-        
-        -- FPS Boost
-        Main_FPSBoost = "FPS Boost",
-        
-        -- Auto Escape
-        Main_AutoEscape = "Auto Escape Prison",
-        Main_AutoEscapeDesc = "Teleports to container and suicides",
-        
-        -- Keycard
-        Main_AutoKeycard = "Auto Get Keycard",
-        Main_AutoKeycardDesc = "Gets the keycard automatically",
-        
-        -- Protections
-        Prot_Title = "PROTECTIONS",
-        Prot_Desc = "Anti Arrest and Anti Taser",
-        Prot_AntiArrest = "Anti Arrest",
-        Prot_AntiTaser = "Anti Taser",
-        
-        -- Weapons
-        Weap_Intro = "Get Available Weapons The Easy Way",
-        Weap_GetAll = "Get All Weapons",
-        Weap_GetAllDesc = "Auto TP to all spawners",
-        Weap_SelectSpecific = "Select Specific Weapon",
-        Weap_DropdownTitle = "Weapon",
-        Weap_GetSelected = "Get Selected Weapon",
-        Weap_GetSelectedDesc = "TP to selected weapon spawner",
-        
-        -- ESP
-        ESP_Title = "ESP",
-        ESP_Options = "ESP Options",
-        ESP_Enable = "Enable ESP",
-        ESP_ShowNames = "Show names",
-        ESP_ShowTracers = "Show tracers (lines)",
-        ESP_TeamColors = "Team colors (red enemy, green ally)",
-        
-        -- AimBot
-        Aim_Title = "AIMBOT",
-        Aim_Options = "AimBot Options",
-        Aim_Enable = "Enable AimBot",
-        Aim_FOV = "FOV (range 10-300)",
-        Aim_IgnoreTeam = "Ignore teammates",
-        Aim_IgnoreDead = "Ignore dead players",
-        Aim_IgnoreWalls = "Ignore behind walls",
-        Aim_BodyPart = "Body part",
-        
-        -- Credits
-        Cred_Title = "CREDITS",
-        Cred_ThanksTo = "Special thanks to:",
-        Cred_ThanksUser = "And You for using the Script",
-        
-        -- Credits buttons
-        Cred_TikTokBtn = "Pichigdasos Tiktok (Dev)",
-        Cred_DiscordBtn = "Pichigdasos Discord User",
-        Cred_YouTubeBtn = "Chituk Youtube",
-        Cred_DiscordServerBtn = "Chituk Discord Server",
-        
-        -- Language
-        Lang_Title = "LANGUAGE",
-        Lang_Desc = "Select your preferred language",
-        Lang_Select = "Select Language",
-        Lang_Spanish = "Spanish",
-        Lang_English = "English",
-        
-        -- ============ NOTIFICATIONS ============
-        Notif_Important = "Important Notice",
-        Notif_Warning = "Are you sure you want to use this script?\nYou could be banned from Prison Life if used incorrectly",
-        Notif_Success = "Success",
-        Notif_Error = "Error",
-        Notif_Info = "Info",
-        Notif_Ready = "Ready",
-        Notif_Copied = "Copied!",
-        
-        Notif_KeycardSuccess = "Keycard obtained successfully",
-        Notif_KeycardError = "Could not get the keycard",
-        Notif_PosNotFound = "Position not found for",
-        Notif_TouchGiverNotFound = "TouchGiver not found for",
-        Notif_CharNotFound = "Character not found",
-        Notif_GunSuccess = "You obtained:",
-        Notif_GunError = "Could not get",
-        Notif_AlreadyHaveGun = "You already have:",
-        Notif_AlreadyAllGuns = "You already have all weapons",
-        Notif_GunsObtained = "weapon(s) obtained",
-        Notif_TikTokCopied = "TikTok link copied to clipboard",
-        Notif_DiscordCopied = "Discord username copied to clipboard",
-        Notif_YouTubeCopied = "YouTube link copied to clipboard",
-        Notif_DiscordServerCopied = "Discord server link copied to clipboard",
-        Notif_LangChangedES = "Idioma cambiado a Español",
-        Notif_LangChangedEN = "Language changed to English",
-        
-        -- Body parts
-        BP_Head = "Head",
-        BP_Torso = "Torso",
-        BP_HumanoidRootPart = "HumanoidRootPart",
-        BP_LeftLeg = "Left Leg",
-        BP_RightLeg = "Right Leg",
-    }
-}
-
--- Funcion principal de traduccion
-local function tr(key)
-    return translations[currentLang][key] or translations["es"][key] or key
-end
-
--- ============================================================
--- SISTEMA DE ACTUALIZACION DE TEXTO EN INSTANCIAS ROBLOX
--- ============================================================
-
---[[
-    Este es el nucleo del sistema mejorado.
-    Cada elemento WindUI creado se guarda con:
-    - La instancia GUI de Roblox (frame principal)
-    - La clave de traduccion
-    - Informacion sobre que texto actualizar
-    
-    La funcion explora la jerarquia de la instancia buscando
-    TextLabels y TextButtons que coincidan con el texto original,
-    o actualiza el primer TextLabel/TextButton relevante encontrado.
-]]
-
-local trackedElements = {}
-local trackedSections = {}  -- Secciones principales (barra lateral)
-local trackedTabs = {}      -- Pestañas dentro de cada seccion
-local flyGuiElements = {}   -- Elementos del FlyGui
-
--- Busca recursivamente todos los TextLabel/TextButton en una instancia
-local function findAllTextObjects(instance)
-    local texts = {}
-    if not instance then return texts end
-    
-    local function scan(obj)
-        if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
-            table.insert(texts, obj)
-        end
-        for _, child in ipairs(obj:GetChildren()) do
-            scan(child)
-        end
-    end
-    
-    pcall(scan, instance)
-    return texts
-end
-
--- Obtiene la instancia GUI principal de un elemento WindUI
-local function getWindUIRoot(element)
-    if not element then return nil end
-    
-    -- WindUI suele exponer la instancia de estas formas
-    local candidates = {
-        element.Instance,
-        element.GuiObject,
-        element.Frame,
-        element.Object,
-        element,  -- A veces el propio elemento ES la instancia
-    }
-    
-    for _, cand in ipairs(candidates) do
-        if cand and typeof(cand) == "Instance" then
-            return cand
-        end
-    end
-    
-    -- Ultimo recurso: buscar cualquier instancia en las propiedades
-    pcall(function()
-        for k, v in pairs(element) do
-            if typeof(v) == "Instance" and v:IsA("GuiObject") then
-                return v
-            end
-        end
-    end)
-    
-    return nil
-end
-
--- Registra un elemento para seguimiento de traduccion
-local function registerElement(element, translationKey, originalTextES)
-    if not element then return end
-    
-    local root = getWindUIRoot(element)
-    local textObjects = findAllTextObjects(root)
-    
-    table.insert(trackedElements, {
-        element = element,
-        root = root,
-        key = translationKey,
-        originalES = originalTextES or translations["es"][translationKey],
-        textObjects = textObjects
-    })
-    
-    return #trackedElements
-end
-
--- Registra una seccion principal (barra lateral)
-local function registerSection(section, translationKey)
-    if not section then return end
-    
-    local root = getWindUIRoot(section)
-    local textObjects = findAllTextObjects(root)
-    
-    table.insert(trackedSections, {
-        section = section,
-        root = root,
-        key = translationKey,
-        textObjects = textObjects
-    })
-end
-
--- Registra una pestaña
-local function registerTab(tab, translationKey)
-    if not tab then return end
-    
-    local root = getWindUIRoot(tab)
-    local textObjects = findAllTextObjects(root)
-    
-    table.insert(trackedTabs, {
-        tab = tab,
-        root = root,
-        key = translationKey,
-        textObjects = textObjects
-    })
-end
-
--- Actualiza TODOS los textos registrados
-local function refreshAllTranslations()
-    -- Actualizar elementos normales
-    for _, entry in ipairs(trackedElements) do
-        local newText = tr(entry.key)
-        local targetES = entry.originalES
-        
-        -- Re-escanear por si la instancia cambio
-        local textObjects = findAllTextObjects(entry.root)
-        entry.textObjects = textObjects
-        
-        for _, textObj in ipairs(textObjects) do
-            -- Si el texto actual coincide con el original en ES, traducir
-            -- O si coincide con cualquier traduccion registrada
-            local currentText = textObj.Text
-            
-            -- Buscar si este texto corresponde a la clave
-            local matches = false
-            for lang, dict in pairs(translations) do
-                if dict[entry.key] and dict[entry.key] == currentText then
-                    matches = true
-                    break
-                end
-            end
-            
-            -- Si es el primer TextLabel grande o coincide, actualizar
-            if matches or currentText == targetES then
-                pcall(function() textObj.Text = newText end)
-            end
-        end
-    end
-    
-    -- Actualizar secciones principales (barra lateral)
-    for _, entry in ipairs(trackedSections) do
-        local newText = tr(entry.key)
-        local textObjects = findAllTextObjects(entry.root)
-        entry.textObjects = textObjects
-        
-        for _, textObj in ipairs(textObjects) do
-            local currentText = textObj.Text
-            local matches = false
-            for lang, dict in pairs(translations) do
-                if dict[entry.key] and dict[entry.key] == currentText then
-                    matches = true
-                    break
-                end
-            end
-            if matches then
-                pcall(function() textObj.Text = newText end)
-            end
-        end
-    end
-    
-    -- Actualizar pestañas
-    for _, entry in ipairs(trackedTabs) do
-        local newText = tr(entry.key)
-        local textObjects = findAllTextObjects(entry.root)
-        entry.textObjects = textObjects
-        
-        for _, textObj in ipairs(textObjects) do
-            local currentText = textObj.Text
-            local matches = false
-            for lang, dict in pairs(translations) do
-                if dict[entry.key] and dict[entry.key] == currentText then
-                    matches = true
-                    break
-                end
-            end
-            if matches then
-                pcall(function() textObj.Text = newText end)
-            end
-        end
-    end
-    
-    -- Actualizar FlyGui si esta abierto
-    if _G.currentFlyGui and flyGuiElements.title then
-        pcall(function() flyGuiElements.title.Text = tr("FlyGui_Title") end)
-    end
-    if _G.flyButton4 then
-        if _G.flyActive then
-            pcall(function() _G.flyButton4.Text = tr("Fly_UnFly") end)
-        else
-            pcall(function() _G.flyButton4.Text = tr("Fly_Fly") end)
-        end
-    end
-    
-    -- Notificacion
-    if currentLang == "es" then
-        WindUI:Notify({Title = tr("Notif_Success"), Description = tr("Notif_LangChangedES"), Duration = 2})
-    else
-        WindUI:Notify({Title = tr("Notif_Success"), Description = tr("Notif_LangChangedEN"), Duration = 2})
-    end
-end
-
--- ============================================================
--- CREAR VENTANA PRINCIPAL
--- ============================================================
 local Window = WindUI:CreateWindow({
-    Title = tr("WindowTitle"),
+    Title = "Chituk Hub",
     Icon = "rbxthumb://type=Asset&id=109365656627783&w=150&h=150",
     Folder = "ChitukHub",
     NewElements = true,
     Size = UDim2.fromOffset(520, 440),
     OpenButton = {
-        Title = tr("OpenButtonTitle"),
+        Title = "Chituk Hub",
         CornerRadius = UDim.new(1, 0),
         StrokeThickness = 2,
         Enabled = true,
@@ -539,168 +26,52 @@ local Window = WindUI:CreateWindow({
     }
 })
 
--- Guardar referencia a la ventana para actualizar titulo
-local windowRoot = getWindUIRoot(Window)
+local MainSection = Window:Section({Title = "Main"})
+local DiversionSection = Window:Section({Title = "Diversión"})
+local ProteccionesSection = Window:Section({Title = "Protecciones"})
+local WeaponsSection = Window:Section({Title = "Armas"})
+local ESPSection = Window:Section({Title = "ESP"})
+local AimSection = Window:Section({Title = "AimBot"})
+local CreditsSection = Window:Section({Title = "Creditos"})
 
--- ============================================================
--- CREAR SECCIONES PRINCIPALES
--- ============================================================
-local MainSection = Window:Section({Title = tr("Sec_Main")})
-registerSection(MainSection, "Sec_Main")
-
-local ProteccionesSection = Window:Section({Title = tr("Sec_Protecciones")})
-registerSection(ProteccionesSection, "Sec_Protecciones")
-
-local WeaponsSection = Window:Section({Title = tr("Sec_Armas")})
-registerSection(WeaponsSection, "Sec_Armas")
-
-local ESPSection = Window:Section({Title = tr("Sec_ESP")})
-registerSection(ESPSection, "Sec_ESP")
-
-local AimSection = Window:Section({Title = tr("Sec_AimBot")})
-registerSection(AimSection, "Sec_AimBot")
-
-local CreditsSection = Window:Section({Title = tr("Sec_Creditos")})
-registerSection(CreditsSection, "Sec_Creditos")
-
-local LanguageSection = Window:Section({Title = tr("Sec_Idioma")})
-registerSection(LanguageSection, "Sec_Idioma")
-
--- ============================================================
--- CREAR PESTAÑAS
--- ============================================================
 local MainTab = MainSection:Tab({
-    Title = tr("Tab_Main"),
+    Title = "Main",
     Icon = "home",
     IconColor = Yellow,
     IconShape = "Square",
     Border = true
 })
-registerTab(MainTab, "Tab_Main")
 
-local ProteccionesTab = ProteccionesSection:Tab({
-    Title = tr("Tab_Protecciones"),
-    Icon = "shield",
-    IconColor = Yellow,
-    IconShape = "Square",
-    Border = true
-})
-registerTab(ProteccionesTab, "Tab_Protecciones")
-
-local WeaponsTab = WeaponsSection:Tab({
-    Title = tr("Tab_Armas"),
-    Icon = "gun",
-    IconColor = Yellow,
-    IconShape = "Square",
-    Border = true
-})
-registerTab(WeaponsTab, "Tab_Armas")
-
-local ESPTab = ESPSection:Tab({
-    Title = tr("Tab_ESP"),
-    Icon = "eye",
-    IconColor = Yellow,
-    IconShape = "Square",
-    Border = true
-})
-registerTab(ESPTab, "Tab_ESP")
-
-local AimTab = AimSection:Tab({
-    Title = tr("Tab_AimBot"),
-    Icon = "crosshair",
-    IconColor = Yellow,
-    IconShape = "Square",
-    Border = true
-})
-registerTab(AimTab, "Tab_AimBot")
-
-local CreditsTab = CreditsSection:Tab({
-    Title = tr("Tab_Creditos"),
-    Icon = "star",
-    IconColor = Yellow,
-    IconShape = "Square",
-    Border = true
-})
-registerTab(CreditsTab, "Tab_Creditos")
-
-local LanguageTab = LanguageSection:Tab({
-    Title = tr("Tab_Idioma"),
-    Icon = "globe",
-    IconColor = Yellow,
-    IconShape = "Square",
-    Border = true
-})
-registerTab(LanguageTab, "Tab_Idioma")
-
--- ============================================================
--- PESTAÑA IDIOMA (creada primero para que el sistema este listo)
--- ============================================================
-local langTitleEl = LanguageTab:Section({Title = tr("Lang_Title"), TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
-registerElement(langTitleEl, "Lang_Title")
-
-local langDescEl = LanguageTab:Section({Title = tr("Lang_Desc"), TextSize = 16, TextTransparency = 0.15})
-registerElement(langDescEl, "Lang_Desc")
-
-local langDropdownEl = LanguageTab:Dropdown({
-    Title = tr("Lang_Select"),
-    Values = {tr("Lang_Spanish"), tr("Lang_English")},
-    Default = tr("Lang_Spanish"),
-    Callback = function(value)
-        -- Detectar idioma seleccionado (funciona con ambos idiomas)
-        if value == "Español" or value == "Spanish" then
-            currentLang = "es"
-        elseif value == "Ingles" or value == "English" then
-            currentLang = "en"
-        end
-        -- Actualizar TODO
-        refreshAllTranslations()
-    end
-})
-registerElement(langDropdownEl, "Lang_Select")
-
--- ============================================================
--- PESTAÑA MAIN
--- ============================================================
-local el1 = MainTab:Section({Title = tr("Main_HubTitle"), TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
-registerElement(el1, "Main_HubTitle")
-
-local el2 = MainTab:Section({Title = tr("Main_Welcome"), TextSize = 16, TextTransparency = 0.15})
-registerElement(el2, "Main_Welcome")
-
-local el3 = MainTab:Section({
-    Title = tr("Main_WarningImportant"),
+MainTab:Section({Title = "CHITUK HUB", TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
+MainTab:Section({Title = "Bienvenido a Chituk Hub", TextSize = 16, TextTransparency = 0.15})
+MainTab:Section({
+    Title = "⚠️ ADVERTENCIA IMPORTANTE",
     TextSize = 18,
     TextColor = Color3.fromRGB(255, 50, 50)
 })
-registerElement(el3, "Main_WarningImportant")
-
-local el4 = MainTab:Section({
-    Title = tr("Main_WarningText"),
+MainTab:Section({
+    Title = "¿Estás seguro que quieres usar este script?\nPodrías ser baneado de Prison Life al usarlo incorrectamente.",
     TextSize = 14,
     TextColor = Color3.fromRGB(255, 200, 200),
     TextTransparency = 0.1
 })
-registerElement(el4, "Main_WarningText")
 
--- ========== VFLY ==========
 local vflyGui = nil
-_G.currentFlyGui = nil
-_G.flyButton4 = nil
-_G.flyActive = false
 
-local elVfly = MainTab:Toggle({
-    Title = tr("Main_VFly"),
+MainTab:Toggle({
+    Title = "Vfly (Funciona Con Autos y también es un Fly Normal)",
     Default = false,
     Callback = function(value)
         if value then
             local LocalPlayer = game.Players.LocalPlayer
-            if not LocalPlayer.Character then LocalPlayer.CharacterAdded:Wait() end
+            if not LocalPlayer.Character then
+                LocalPlayer.CharacterAdded:Wait()
+            end
             local PlayerGui = LocalPlayer:WaitForChild("PlayerGui", 10)
             local CurrentCamera = workspace.CurrentCamera
             local RunService = game:GetService("RunService")
 
             local u5 = false
-            _G.flyActive = false
             local FindFirstChild = PlayerGui.FindFirstChild
             local n1 = 1
             local u8 = false
@@ -709,7 +80,6 @@ local elVfly = MainTab:Toggle({
             end
             local ScreenGui = Instance.new("ScreenGui", PlayerGui)
             vflyGui = ScreenGui
-            _G.currentFlyGui = ScreenGui
 
             ScreenGui.Name = "ChitukHubFlyGui"
             ScreenGui.ResetOnSpawn = false
@@ -725,11 +95,9 @@ local elVfly = MainTab:Toggle({
             Instance.new("UICorner", Frame).CornerRadius = UDim.new(0, 10)
 
             local TextLabel = Instance.new("TextLabel", Frame)
-            flyGuiElements.title = TextLabel
-
             TextLabel.Size = UDim2.new(1, 0, 0, 40)
             TextLabel.Position = UDim2.new(0, 0, 0, 0)
-            TextLabel.Text = tr("FlyGui_Title")
+            TextLabel.Text = "Chituk Hub Fly Gui"
             TextLabel.TextColor3 = Color3.new(1, 1, 1)
             TextLabel.BackgroundTransparency = 1
             TextLabel.Font = Enum.Font.SourceSansBold
@@ -782,11 +150,9 @@ local elVfly = MainTab:Toggle({
             Instance.new("UICorner", TextButton3)
 
             local TextButton4 = Instance.new("TextButton", Frame)
-            _G.flyButton4 = TextButton4
-
             TextButton4.Size = UDim2.new(1, -30, 0, 45)
             TextButton4.Position = UDim2.new(0, 15, 0, 115)
-            TextButton4.Text = tr("Fly_Fly")
+            TextButton4.Text = "Fly"
             TextButton4.BackgroundColor3 = Color3.fromRGB(110, 110, 110)
             TextButton4.BackgroundTransparency = 0
             TextButton4.TextColor3 = Color3.new(1, 1, 1)
@@ -817,7 +183,10 @@ local elVfly = MainTab:Toggle({
             
             TextBox.FocusLost:Connect(function(_)
                 local num = tonumber(TextBox.Text)
-                if num then n1 = num; return end
+                if num then
+                    n1 = num
+                    return
+                end
                 TextBox.Text = tostring(n1)
             end)
 
@@ -834,7 +203,9 @@ local elVfly = MainTab:Toggle({
                     local Character = LocalPlayer.Character
                     local v29 = Character and Character:FindFirstChildOfClass("Humanoid")
                     local v30 = v29
-                    if v29 then v30 = v29.MoveDirection.Magnitude > 0 end
+                    if v29 then
+                        v30 = v29.MoveDirection.Magnitude > 0
+                    end
                     if v30 then
                         local MoveDirection = v29.MoveDirection
                         local v32 = MoveDirection:Dot(CurrentCamera.CFrame.LookVector)
@@ -843,27 +214,34 @@ local elVfly = MainTab:Toggle({
                     end
                 end
                 local v34 = vector3.Magnitude > 0 and vector3.Unit
-                if not v34 then v34 = Vector3.new(0, 0, 0) end
+                if not v34 then
+                    v34 = Vector3.new(0, 0, 0)
+                end
                 return v34
             end
             
             TextButton4.MouseButton1Click:Connect(function()
                 u5 = not u5
-                _G.flyActive = u5
-                TextButton4.Text = not u5 and tr("Fly_Fly") or tr("Fly_UnFly")
+                TextButton4.Text = not u5 and "Fly" or "UnFly"
                 if u5 then
                     local Character = LocalPlayer.Character
                     local Humanoid = Character:FindFirstChildOfClass("Humanoid")
                     local v37 = Humanoid and Humanoid.SeatPart
                     local v38 = v37
                     if not v38 then
-                        if Character then Character = Character:FindFirstChild("HumanoidRootPart") end
+                        if Character then
+                            Character = Character:FindFirstChild("HumanoidRootPart")
+                        end
                         v38 = Character
                     end
                     local u39 = v38
                     local v40 = u39
-                    if v40 then v40 = u39:IsA("VehicleSeat") end
-                    if v40 then u39 = u39.Parent.PrimaryPart or u39 end
+                    if v40 then
+                        v40 = u39:IsA("VehicleSeat")
+                    end
+                    if v40 then
+                        u39 = u39.Parent.PrimaryPart or u39
+                    end
                     if u39 then
                         local BodyVelocity = Instance.new("BodyVelocity", u39)
                         BodyVelocity.maxForce = Vector3.new(9000000000, 9000000000, 9000000000)
@@ -873,8 +251,15 @@ local elVfly = MainTab:Toggle({
                         task.spawn(function()
                             while true do
                                 local v48 = u5
-                                if v48 then v48 = u39; if v48 then v48 = u39.Parent end end
-                                if not v48 then break end
+                                if v48 then
+                                    v48 = u39
+                                    if v48 then
+                                        v48 = u39.Parent
+                                    end
+                                end
+                                if not v48 then
+                                    break
+                                end
                                 local v49 = v17(v37)
                                 if v49.Magnitude > 0 then
                                     BodyVelocity.velocity = v49 * (n1 * 50)
@@ -884,22 +269,25 @@ local elVfly = MainTab:Toggle({
                                 BodyGyro.cframe = CurrentCamera.CFrame
                                 RunService.Heartbeat:Wait()
                             end
-                            if BodyVelocity then BodyVelocity:Destroy() end
-                            if BodyGyro then BodyGyro:Destroy() end
+                            if BodyVelocity then
+                                BodyVelocity:Destroy()
+                            end
+                            if BodyGyro then
+                                BodyGyro:Destroy()
+                            end
                         end)
                     end
                 end
             end)
         else
-            if vflyGui then vflyGui:Destroy(); vflyGui = nil; _G.currentFlyGui = nil end
-            _G.flyButton4 = nil
-            _G.flyActive = false
+            if vflyGui then
+                vflyGui:Destroy()
+                vflyGui = nil
+            end
         end
     end
 })
-registerElement(elVfly, "Main_VFly")
 
--- ========== VELOCIDAD ==========
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local player = Players.LocalPlayer
@@ -930,32 +318,37 @@ end
 player.CharacterAdded:Connect(function(char)
     character = char
     root = char:WaitForChild("HumanoidRootPart")
-    if speedEnabled then activarVelocidad() end
+    if speedEnabled then
+        activarVelocidad()
+    end
 end)
 
-local elSpeed = MainTab:Toggle({
-    Title = tr("Main_EnableSpeed"),
+MainTab:Toggle({
+    Title = "Activar Velocidad",
     Default = false,
     Callback = function(value)
         speedEnabled = value
-        if value then activarVelocidad()
-        elseif speedConnection then speedConnection:Disconnect(); speedConnection = nil end
+        if value then
+            activarVelocidad()
+        elseif speedConnection then
+            speedConnection:Disconnect()
+            speedConnection = nil
+        end
     end
 })
-registerElement(elSpeed, "Main_EnableSpeed")
 
-local elSpeedInput = MainTab:Input({
-    Title = tr("Main_SpeedLimit"),
+MainTab:Input({
+    Title = "Velocidad (limite 300)",
     Default = "4",
     Numeric = true,
     Callback = function(value)
         local num = tonumber(value)
-        if num then speedMultiplier = math.clamp(num, 0, 300) end
+        if num then
+            speedMultiplier = math.clamp(num, 0, 300)
+        end
     end
 })
-registerElement(elSpeedInput, "Main_SpeedLimit")
 
--- ========== SALTO INFINITO ==========
 local UIS = game:GetService("UserInputService")
 local infiniteJumpEnabled = false
 local jumpConnection
@@ -966,33 +359,42 @@ local function activarSaltoInfinito()
         if not infiniteJumpEnabled then return end
         local character = player.Character
         local humanoid = character and character:FindFirstChildOfClass("Humanoid")
-        if humanoid then humanoid:ChangeState(Enum.HumanoidStateType.Jumping) end
+        if humanoid then
+            humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+        end
     end)
 end
 
-local elJump = MainTab:Toggle({
-    Title = tr("Main_InfiniteJump"),
+MainTab:Toggle({
+    Title = "Salto Infinito",
     Default = false,
     Callback = function(value)
         infiniteJumpEnabled = value
-        if value then activarSaltoInfinito()
-        elseif jumpConnection then jumpConnection:Disconnect(); jumpConnection = nil end
+        if value then
+            activarSaltoInfinito()
+        elseif jumpConnection then
+            jumpConnection:Disconnect()
+            jumpConnection = nil
+        end
     end
 })
-registerElement(elJump, "Main_InfiniteJump")
 
--- ========== FULLBRIGHT ==========
 local Lighting = game:GetService("Lighting")
 local fullBrightEnabled = false
 local oldLighting = {
-    Brightness = Lighting.Brightness, Ambient = Lighting.Ambient,
-    OutdoorAmbient = Lighting.OutdoorAmbient, ColorShift_Top = Lighting.ColorShift_Top,
-    ColorShift_Bottom = Lighting.ColorShift_Bottom, ShadowSoftness = Lighting.ShadowSoftness,
-    GlobalShadows = Lighting.GlobalShadows, FogEnd = Lighting.FogEnd, FogStart = Lighting.FogStart
+    Brightness = Lighting.Brightness,
+    Ambient = Lighting.Ambient,
+    OutdoorAmbient = Lighting.OutdoorAmbient,
+    ColorShift_Top = Lighting.ColorShift_Top,
+    ColorShift_Bottom = Lighting.ColorShift_Bottom,
+    ShadowSoftness = Lighting.ShadowSoftness,
+    GlobalShadows = Lighting.GlobalShadows,
+    FogEnd = Lighting.FogEnd,
+    FogStart = Lighting.FogStart
 }
 
-local elFB = MainTab:Toggle({
-    Title = tr("Main_FullBright"),
+MainTab:Toggle({
+    Title = "FullBright / Iluminacion Completa",
     Default = false,
     Callback = function(value)
         fullBrightEnabled = value
@@ -1019,9 +421,7 @@ local elFB = MainTab:Toggle({
         end
     end
 })
-registerElement(elFB, "Main_FullBright")
 
--- ========== FPS BOOST ==========
 local fpsBoostEnabled = false
 local oldEffects = {}
 local oldMaterials = {}
@@ -1052,15 +452,21 @@ end
 
 local function restaurarEfectos()
     for effect, enabled in pairs(oldEffects) do
-        if effect and effect.Parent then effect.Enabled = enabled end
+        if effect and effect.Parent then
+            effect.Enabled = enabled
+        end
     end
     oldEffects = {}
     for part, material in pairs(oldMaterials) do
-        if part and part.Parent then part.Material = material end
+        if part and part.Parent then
+            part.Material = material
+        end
     end
     oldMaterials = {}
     for part, castShadow in pairs(oldShadows) do
-        if part and part.Parent then part.CastShadow = castShadow end
+        if part and part.Parent then
+            part.CastShadow = castShadow
+        end
     end
     oldShadows = {}
     UserSettings():GetService("UserGameSettings").SavedQualityLevel = oldMaterialQuality
@@ -1068,20 +474,22 @@ local function restaurarEfectos()
     Lighting.ShadowSoftness = oldLighting.ShadowSoftness
 end
 
-local elFPS = MainTab:Toggle({
-    Title = tr("Main_FPSBoost"),
+MainTab:Toggle({
+    Title = "FPS Boost",
     Default = false,
     Callback = function(value)
         fpsBoostEnabled = value
-        if value then desactivarEfectos() else restaurarEfectos() end
+        if value then
+            desactivarEfectos()
+        else
+            restaurarEfectos()
+        end
     end
 })
-registerElement(elFPS, "Main_FPSBoost")
 
--- ========== BOTONES MAIN ==========
-local elEscape = MainTab:Button({
-    Title = tr("Main_AutoEscape"),
-    Description = tr("Main_AutoEscapeDesc"),
+MainTab:Button({
+    Title = "Auto Escapar Prision",
+    Description = "Teletransporta al contenedor y se suicida",
     Callback = function()
         local players = game:GetService("Players")
         local lp = players.LocalPlayer
@@ -1091,12 +499,12 @@ local elEscape = MainTab:Button({
         hrp.CFrame = tpto.CFrame
         wait(2)
         local hum = chr:FindFirstChildOfClass("Humanoid")
-        if hum then hum.Health = 0 end
+        if hum then
+            hum.Health = 0
+        end
     end
 })
-registerElement(elEscape, "Main_AutoEscape")
 
-local LocalPlayer = Players.LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local remote = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("GiverPressed")
 local RETRY_DELAY = 0.3
@@ -1112,23 +520,32 @@ local function getToolFromPlayers()
         if player ~= LocalPlayer then
             local backpack = player:FindFirstChild("Backpack")
             local tool = backpack and backpack:FindFirstChild("Key card")
-            if tool then return tool end
+            if tool then
+                return tool
+            end
         end
     end
 end
 
 local function tryGiveKeycard()
     local backpack = LocalPlayer:WaitForChild("Backpack")
-    if backpack:FindFirstChild("Key card") then return true end
-    if LocalPlayer.Team and LocalPlayer.Team.Name == "Guards" then return true end
+    if backpack:FindFirstChild("Key card") then
+        return true
+    end
+    if LocalPlayer.Team and LocalPlayer.Team.Name == "Guards" then
+        return true
+    end
     local source = getToolFromRS() or getToolFromPlayers()
-    if source then source:Clone().Parent = backpack; return true end
+    if source then
+        source:Clone().Parent = backpack
+        return true
+    end
     return false
 end
 
-local elKeycard = MainTab:Button({
-    Title = tr("Main_AutoKeycard"),
-    Description = tr("Main_AutoKeycardDesc"),
+MainTab:Button({
+    Title = "Auto Conseguir Keycard",
+    Description = "Obtiene la keycard automaticamente",
     Callback = function()
         task.spawn(function()
             local running = true
@@ -1138,23 +555,21 @@ local elKeycard = MainTab:Button({
             while running and tick() - startTime < timeout do
                 local success = pcall(tryGiveKeycard)
                 if success and tryGiveKeycard() then
-                    obtained = true; running = false; break
+                    obtained = true
+                    running = false
+                    break
                 end
                 task.wait(RETRY_DELAY)
             end
             if obtained then
-                WindUI:Notify({Title = tr("Notif_Success"), Description = tr("Notif_KeycardSuccess"), Duration = 2})
+                WindUI:Notify({Title = "Exito", Description = "Keycard obtenida correctamente", Duration = 2})
             else
-                WindUI:Notify({Title = tr("Notif_Error"), Description = tr("Notif_KeycardError"), Duration = 2})
+                WindUI:Notify({Title = "Error", Description = "No se pudo obtener la keycard", Duration = 2})
             end
         end)
     end
 })
-registerElement(elKeycard, "Main_AutoKeycard")
 
--- ============================================================
--- SISTEMA DE ARMAS
--- ============================================================
 local gunPositions = {
     ["Remington 870"] = CFrame.new(820.298583984375, 87.85000610351562, 2229.396240234375),
     ["MP5"] = CFrame.new(813.6986694335938, 87.85000610351562, 2229.396240234375),
@@ -1164,7 +579,9 @@ local gunPositions = {
 local touchGiverCache = {}
 
 local function getTouchGiver(gunName)
-    if touchGiverCache[gunName] then return touchGiverCache[gunName] end
+    if touchGiverCache[gunName] then
+        return touchGiverCache[gunName]
+    end
     local targetPos = gunPositions[gunName]
     if not targetPos then return nil end
     for _, weapongiver in ipairs(workspace:QueryDescendants("#TouchGiver")) do
@@ -1187,17 +604,17 @@ end
 local function GetGun(gunName)
     local targetPos = gunPositions[gunName]
     if not targetPos then
-        WindUI:Notify({Title = tr("Notif_Error"), Description = tr("Notif_PosNotFound") .. " " .. gunName, Duration = 3})
+        WindUI:Notify({Title = "Error", Description = "Posición no encontrada para " .. gunName, Duration = 3})
         return false
     end
     local targetGiver = getTouchGiver(gunName)
     if not targetGiver then
-        WindUI:Notify({Title = tr("Notif_Error"), Description = tr("Notif_TouchGiverNotFound") .. " " .. gunName, Duration = 3})
+        WindUI:Notify({Title = "Error", Description = "No se encontró el TouchGiver para " .. gunName, Duration = 3})
         return false
     end
     local char = LocalPlayer.Character
     if not char then
-        WindUI:Notify({Title = tr("Notif_Error"), Description = tr("Notif_CharNotFound"), Duration = 2})
+        WindUI:Notify({Title = "Error", Description = "Personaje no encontrado", Duration = 2})
         return false
     end
     local hrp = char:FindFirstChild("HumanoidRootPart")
@@ -1208,19 +625,31 @@ local function GetGun(gunName)
     local timeout = 2
     local conn
     conn = RunService.Heartbeat:Connect(function()
-        if not char or not char.Parent then conn:Disconnect(); return end
+        if not char or not char.Parent then
+            conn:Disconnect()
+            return
+        end
         hrp.CFrame = targetPos
-        pcall(function() remote:FireServer(targetGiver) end)
+        pcall(function()
+            remote:FireServer(targetGiver)
+        end)
         if hasGun(gunName) then
-            success = true; conn:Disconnect(); hrp.CFrame = oldPos
+            success = true
+            conn:Disconnect()
+            hrp.CFrame = oldPos
         end
     end)
-    while not success and tick() - startTime < timeout do task.wait(0.1) end
-    if conn and conn.Connected then conn:Disconnect(); hrp.CFrame = oldPos end
+    while not success and tick() - startTime < timeout do
+        task.wait(0.1)
+    end
+    if conn and conn.Connected then
+        conn:Disconnect()
+        hrp.CFrame = oldPos
+    end
     if success then
-        WindUI:Notify({Title = tr("Notif_Success"), Description = tr("Notif_GunSuccess") .. " " .. gunName, Duration = 2})
+        WindUI:Notify({Title = "Exito", Description = "Obtuviste: " .. gunName, Duration = 2})
     else
-        WindUI:Notify({Title = tr("Notif_Error"), Description = tr("Notif_GunError") .. " " .. gunName, Duration = 2})
+        WindUI:Notify({Title = "Error", Description = "No se pudo obtener " .. gunName, Duration = 2})
     end
     return success
 end
@@ -1229,25 +658,29 @@ local function GrabAllGuns()
     local obtained = {}
     for _, gun in ipairs({"Remington 870", "MP5", "AK-47"}) do
         if not hasGun(gun) then
-            if GetGun(gun) then table.insert(obtained, gun) end
+            if GetGun(gun) then
+                table.insert(obtained, gun)
+            end
             task.wait(0.2)
         end
     end
     if #obtained == 0 then
-        WindUI:Notify({Title = tr("Notif_Info"), Description = tr("Notif_AlreadyAllGuns"), Duration = 2})
+        WindUI:Notify({Title = "Info", Description = "Ya tienes todas las armas", Duration = 2})
     else
-        WindUI:Notify({Title = tr("Notif_Ready"), Description = #obtained .. " " .. tr("Notif_GunsObtained"), Duration = 2})
+        WindUI:Notify({Title = "Listo", Description = "Obtuviste " .. #obtained .. " arma(s)", Duration = 2})
     end
 end
 
--- ============================================================
--- PESTAÑA PROTECCIONES
--- ============================================================
-local pTitle = ProteccionesTab:Section({Title = tr("Prot_Title"), TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
-registerElement(pTitle, "Prot_Title")
+local ProteccionesTab = ProteccionesSection:Tab({
+    Title = "Protecciones",
+    Icon = "shield",
+    IconColor = Yellow,
+    IconShape = "Square",
+    Border = true
+})
 
-local pDesc = ProteccionesTab:Section({Title = tr("Prot_Desc"), TextSize = 16, TextTransparency = 0.15})
-registerElement(pDesc, "Prot_Desc")
+ProteccionesTab:Section({Title = "PROTECCIONES", TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
+ProteccionesTab:Section({Title = "Anti Arrest y Anti Taser", TextSize = 16, TextTransparency = 0.15})
 
 local antiArrestEnabled = false
 local antiTaseEnabled = false
@@ -1270,11 +703,14 @@ local function setupProtectionConnection()
                 repeat task.wait() until LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
                 task.wait(0.1)
                 if wasCriminal then
-                    pcall(function() LocalPlayer.Character.HumanoidRootPart.CFrame = cpos end)
+                    pcall(function()
+                        LocalPlayer.Character.HumanoidRootPart.CFrame = cpos
+                    end)
                 end
             end
             if antiTaseEnabled and des.Animation.AnimationId == TASE_ANIMATION then
-                des:Stop(); des:Destroy()
+                des:Stop()
+                des:Destroy()
                 LocalPlayer.Character.Humanoid.PlatformStand = false
                 LocalPlayer.Character.Humanoid.Sit = false
                 LocalPlayer.Character.Humanoid.WalkSpeed = 16
@@ -1282,12 +718,14 @@ local function setupProtectionConnection()
             end
         end)
     end
-    if LocalPlayer.Character then onCharacterAdded(LocalPlayer.Character) end
+    if LocalPlayer.Character then
+        onCharacterAdded(LocalPlayer.Character)
+    end
     animConnection = LocalPlayer.CharacterAdded:Connect(onCharacterAdded)
 end
 
-local pAntiArrest = ProteccionesTab:Toggle({
-    Title = tr("Prot_AntiArrest"),
+ProteccionesTab:Toggle({
+    Title = "Anti Arrest",
     Default = false,
     Callback = function(value)
         antiArrestEnabled = value
@@ -1296,10 +734,9 @@ local pAntiArrest = ProteccionesTab:Toggle({
         end
     end
 })
-registerElement(pAntiArrest, "Prot_AntiArrest")
 
-local pAntiTaser = ProteccionesTab:Toggle({
-    Title = tr("Prot_AntiTaser"),
+ProteccionesTab:Toggle({
+    Title = "Anti Taser",
     Default = false,
     Callback = function(value)
         antiTaseEnabled = value
@@ -1308,66 +745,215 @@ local pAntiTaser = ProteccionesTab:Toggle({
         end
     end
 })
-registerElement(pAntiTaser, "Prot_AntiTaser")
 
--- ============================================================
--- PESTAÑA ARMAS
--- ============================================================
-local wIntro = WeaponsTab:Section({Title = tr("Weap_Intro"), TextSize = 20, FontWeight = Enum.FontWeight.SemiBold})
-registerElement(wIntro, "Weap_Intro")
-
-local wGetAll = WeaponsTab:Button({
-    Title = tr("Weap_GetAll"),
-    Description = tr("Weap_GetAllDesc"),
-    Callback = function() task.spawn(GrabAllGuns) end
+local WeaponsTab = WeaponsSection:Tab({
+    Title = "Armas",
+    Icon = "gun",
+    IconColor = Yellow,
+    IconShape = "Square",
+    Border = true
 })
-registerElement(wGetAll, "Weap_GetAll")
 
-local wSelectSpec = WeaponsTab:Section({Title = tr("Weap_SelectSpecific"), TextSize = 14, TextTransparency = 0.15})
-registerElement(wSelectSpec, "Weap_SelectSpecific")
+WeaponsTab:Section({Title = "Consigue Las Armas Disponibles De Una Manera mas facil", TextSize = 20, FontWeight = Enum.FontWeight.SemiBold})
+
+WeaponsTab:Button({
+    Title = "Obtener Todas las Armas",
+    Description = "TP automatico a todos los spawners",
+    Callback = function()
+        task.spawn(GrabAllGuns)
+    end
+})
+
+WeaponsTab:Section({Title = "Seleccionar Arma Especifica", TextSize = 14, TextTransparency = 0.15})
 
 local allGuns = {"Remington 870", "MP5", "AK-47"}
 local selectedGun = allGuns[1]
 
-local wDropdown = WeaponsTab:Dropdown({
-    Title = tr("Weap_DropdownTitle"),
+WeaponsTab:Dropdown({
+    Title = "Arma",
     Values = allGuns,
     Default = allGuns[1],
-    Callback = function(value) selectedGun = value end
+    Callback = function(value)
+        selectedGun = value
+    end
 })
-registerElement(wDropdown, "Weap_DropdownTitle")
 
-local wGetSelected = WeaponsTab:Button({
-    Title = tr("Weap_GetSelected"),
-    Description = tr("Weap_GetSelectedDesc"),
+WeaponsTab:Button({
+    Title = "Obtener Arma Seleccionada",
+    Description = "TP al spawner del arma elegida",
     Callback = function()
         if hasGun(selectedGun) then
-            WindUI:Notify({Title = tr("Notif_Info"), Description = tr("Notif_AlreadyHaveGun") .. " " .. selectedGun, Duration = 2})
+            WindUI:Notify({Title = "Info", Description = "Ya tienes: " .. selectedGun, Duration = 2})
         else
             task.spawn(function() GetGun(selectedGun) end)
         end
     end
 })
-registerElement(wGetSelected, "Weap_GetSelected")
 
--- ============================================================
--- NOTIFICACION INICIAL
--- ============================================================
-WindUI:Notify({
-    Title = tr("Notif_Important"),
-    Description = tr("Notif_Warning"),
-    Duration = 20,
-    ClickToClose = true
+local DiversionTab = DiversionSection:Tab({
+    Title = "Diversión",
+    Icon = "smile",
+    IconColor = Yellow,
+    IconShape = "Square",
+    Border = true
 })
 
--- ============================================================
--- AIMBOT
--- ============================================================
-local aTitle = AimTab:Section({Title = tr("Aim_Title"), TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
-registerElement(aTitle, "Aim_Title")
+local airWalk = false
+local air = Instance.new("Part")
+air.Name = "Airwalk"
+air.Size = Vector3.new(7, 2, 3)
+air.Transparency = 1
+air.Anchored = true
+air.CanCollide = false
+air.Parent = workspace
 
-local aOptions = AimTab:Section({Title = tr("Aim_Options"), TextSize = 16, TextTransparency = 0.15})
-registerElement(aOptions, "Aim_Options")
+task.spawn(function()
+    while task.wait() do
+        if airWalk then
+            local chr = player.Character
+            local hrp = chr and chr:FindFirstChild("HumanoidRootPart")
+            if hrp then
+                air.CFrame = hrp.CFrame + Vector3.new(0, -4, 0)
+            end
+        end
+    end
+end)
+
+DiversionTab:Toggle({
+    Title = "Air Walk",
+    Default = false,
+    Callback = function(v)
+        airWalk = v
+        air.CanCollide = v
+    end
+})
+
+local UserInputService = game:GetService("UserInputService")
+local FlipCooldown = false
+
+local function FortniteFlips()
+    if FlipCooldown then return end
+    FlipCooldown = true
+    local chr = player.Character
+    local hrp = chr and chr:FindFirstChild("HumanoidRootPart")
+    local hum = chr and chr:FindFirstChildOfClass("Humanoid")
+    local animator = hum and hum:FindFirstChildOfClass("Animator")
+    local animate = chr and chr:FindFirstChild("Animate")
+    if not hrp or not hum then FlipCooldown = false return end
+    local savedTracks = {}
+    if animator then
+        for _, track in ipairs(animator:GetPlayingAnimationTracks()) do
+            savedTracks[#savedTracks+1] = {track=track,time=track.TimePosition,speed=track.Speed,weight=track.WeightCurrent}
+            track:Stop(0)
+        end
+    end
+    local animateWasEnabled = animate and animate.Enabled
+    if animate then animate.Enabled = false end
+    local oldAutoRotate = hum.AutoRotate
+    hum.AutoRotate = false
+    hum:ChangeState(Enum.HumanoidStateType.Physics)
+    local duration = 0.45
+    local steps = 120
+    local startCFrame = hrp.CFrame
+    local forwardVector = startCFrame.LookVector
+    local upVector = Vector3.new(0,1,0)
+    task.spawn(function()
+        local startTime = tick()
+        for i=1,steps do
+            if not chr.Parent or hum.Health <= 0 then break end
+            local t = i/steps
+            local height = 4*(t-t^2)*10
+            local nextPos = startCFrame.Position + forwardVector*35*t + upVector*height
+            local rotation = startCFrame.Rotation * CFrame.Angles(-math.rad(i*(360/steps)),0,0)
+            hrp.CFrame = CFrame.new(nextPos)*rotation
+            local elapsed = tick()-startTime
+            local expected = (duration/steps)*i
+            local waitTime = expected-elapsed
+            if waitTime>0 then task.wait(waitTime) end
+        end
+        if chr.Parent and hum.Health>0 then
+            hrp.CFrame = CFrame.new(startCFrame.Position+forwardVector*35)*startCFrame.Rotation
+            hum.AutoRotate = oldAutoRotate
+            if animate then animate.Enabled = animateWasEnabled~=false end
+            hum:ChangeState(Enum.HumanoidStateType.GettingUp)
+            task.wait(0.05)
+            hum:ChangeState(Enum.HumanoidStateType.Running)
+            task.wait(0.1)
+            if animator then
+                for _,dat in ipairs(savedTracks) do
+                    if dat.track and dat.track.Parent then
+                        pcall(function()
+                            dat.track:Play(0.1,dat.weight,dat.speed)
+                            dat.track.TimePosition = dat.time
+                        end)
+                    end
+                end
+            end
+        end
+        task.wait(0.25)
+        FlipCooldown = false
+    end)
+end
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "ChitukHubFrontFlip"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Parent = game:GetService("CoreGui")
+
+local Main = Instance.new("Frame")
+Main.Size = UDim2.new(0,160,0,85)
+Main.Position = UDim2.new(0.5,-80,0.75,0)
+Main.BackgroundTransparency = 1
+Main.Active = true
+Main.Parent = ScreenGui
+
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1,0,0,25)
+Title.Position = UDim2.new(0,0,0,0)
+Title.BackgroundTransparency = 1
+Title.Text = "Chituk Hub-FrontFlip"
+Title.TextColor3 = Color3.fromRGB(255,255,255)
+Title.TextTransparency = 0.45
+Title.TextSize = 14
+Title.Font = Enum.Font.GothamMedium
+Title.Parent = Main
+
+local Button = Instance.new("TextButton")
+Button.Size = UDim2.new(0,140,0,50)
+Button.Position = UDim2.new(0.5,-70,0,30)
+Button.BackgroundColor3 = Color3.fromRGB(15,15,15)
+Button.BorderSizePixel = 0
+Button.Text = "FRONT FLIP"
+Button.TextColor3 = Color3.fromRGB(255,255,255)
+Button.TextSize = 17
+Button.Font = Enum.Font.GothamBold
+Button.AutoButtonColor = true
+Button.Parent = Main
+
+local Corner = Instance.new("UICorner")
+Corner.CornerRadius = UDim.new(0,8)
+Corner.Parent = Button
+
+local dragging = false
+local dragStart,startPos
+Main.InputBegan:Connect(function(input)
+    if input.UserInputType==Enum.UserInputType.MouseButton1 or input.UserInputType==Enum.UserInputType.Touch then
+        dragging=true
+        dragStart=input.Position
+        startPos=Main.Position
+        input.Changed:Connect(function()
+            if input.UserInputState==Enum.UserInputState.End then dragging=false end
+        end)
+    end
+end)
+UserInputService.InputChanged:Connect(function(input)
+    if not dragging then return end
+    if input.UserInputType==Enum.UserInputType.MouseMovement or input.UserInputType==Enum.UserInputType.Touch then
+        local delta=input.Position-dragStart
+        Main.Position=UDim2.new(startPos.X.Scale,startPos.X.Offset+delta.X,startPos.Y.Scale,startPos.Y.Offset+delta.Y)
+    end
+end)
+Button.Activated:Connect(FortniteFlips)
 
 local Camera = workspace.CurrentCamera
 local aimbotEnabled = false
@@ -1379,377 +965,265 @@ local targetPartName = "Head"
 
 local circle = Drawing.new("Circle")
 circle.Thickness = 1.5
-circle.Color = Color3.fromRGB(255, 255, 255)
+circle.Color = Color3.fromRGB(255,255,255)
 circle.Filled = false
 circle.Visible = false
 
 local function findBestTarget()
-    local bestDist = 1e999
-    local bestPlayer = nil
-    local center = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
-    for _, player in pairs(Players:GetPlayers()) do
-        if player == LocalPlayer then continue end
-        local character = player.Character
-        if not character then continue end
-        local targetPart = character:FindFirstChild(targetPartName)
-        if not targetPart then continue end
-        if teamCheck and player.Team == LocalPlayer.Team then continue end
-        local humanoid = character:FindFirstChildOfClass("Humanoid")
-        if killCheck and (not humanoid or humanoid.Health <= 0) then continue end
+    local bestDist=1e999
+    local bestPlayer=nil
+    local center=Vector2.new(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2)
+    for _,p in pairs(Players:GetPlayers()) do
+        if p==LocalPlayer then continue end
+        local c=p.Character
+        if not c then continue end
+        local tp=c:FindFirstChild(targetPartName)
+        if not tp then continue end
+        if teamCheck and p.Team==LocalPlayer.Team then continue end
+        local hum=c:FindFirstChildOfClass("Humanoid")
+        if killCheck and (not hum or hum.Health<=0) then continue end
         if wallCheck then
-            local origin = Camera.CFrame.Position
-            local direction = (targetPart.Position - origin).Unit * 500
-            local params = RaycastParams.new()
-            params.FilterType = Enum.RaycastFilterType.Blacklist
-            params.FilterDescendantsInstances = { LocalPlayer.Character }
-            local result = workspace:Raycast(origin, direction, params)
-            if result and not character:IsAncestorOf(result.Instance) then continue end
+            local origin=Camera.CFrame.Position
+            local dir=(tp.Position-origin).Unit*500
+            local params=RaycastParams.new()
+            params.FilterType=Enum.RaycastFilterType.Blacklist
+            params.FilterDescendantsInstances={LocalPlayer.Character}
+            local res=workspace:Raycast(origin,dir,params)
+            if res and not c:IsAncestorOf(res.Instance) then continue end
         end
-        local screenPos, onScreen = Camera:WorldToViewportPoint(targetPart.Position)
-        if onScreen then
-            local dist = (Vector2.new(screenPos.X, screenPos.Y) - center).Magnitude
-            if dist < fov and dist < bestDist then
-                bestDist = dist; bestPlayer = player
-            end
+        local sp,onScr=Camera:WorldToViewportPoint(tp.Position)
+        if onScr then
+            local d=(Vector2.new(sp.X,sp.Y)-center).Magnitude
+            if d<fov and d<bestDist then bestDist=d bestPlayer=p end
         end
     end
     return bestPlayer
 end
 
-RunService:BindToRenderStep("AimbotRender", Enum.RenderPriority.Camera.Value + 1, function()
-    local center = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
-    circle.Position = center
-    circle.Radius = fov
-    circle.Visible = aimbotEnabled
+RunService:BindToRenderStep("AimbotRender",Enum.RenderPriority.Camera.Value+1,function()
+    local center=Vector2.new(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2)
+    circle.Position=center
+    circle.Radius=fov
+    circle.Visible=aimbotEnabled
     if aimbotEnabled then
-        local target = findBestTarget()
-        if target and target.Character and target.Character:FindFirstChild(targetPartName) then
-            Camera.CFrame = CFrame.new(Camera.CFrame.Position, target.Character[targetPartName].Position)
+        local tgt=findBestTarget()
+        if tgt and tgt.Character and tgt.Character:FindFirstChild(targetPartName) then
+            Camera.CFrame=CFrame.new(Camera.CFrame.Position,tgt.Character[targetPartName].Position)
         end
     end
 end)
 
-local aEnable = AimTab:Toggle({
-    Title = tr("Aim_Enable"),
-    Default = false,
-    Callback = function(value) aimbotEnabled = value end
+local AimTab = AimSection:Tab({
+    Title = "AimBot",
+    Icon = "crosshair",
+    IconColor = Yellow,
+    IconShape = "Square",
+    Border = true
 })
-registerElement(aEnable, "Aim_Enable")
 
-local aFOV = AimTab:Input({
-    Title = tr("Aim_FOV"),
+AimTab:Section({Title = "AIMBOT", TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
+AimTab:Section({Title = "Opciones de AimBot", TextSize = 16, TextTransparency = 0.15})
+
+AimTab:Toggle({
+    Title = "Activar AimBot",
+    Default = false,
+    Callback = function(v) aimbotEnabled=v end
+})
+
+AimTab:Input({
+    Title = "FOV (rango 10-300)",
     Default = "80",
     Numeric = true,
-    Callback = function(value)
-        local num = tonumber(value)
-        if num then num = math.clamp(num, 10, 300); fov = num end
+    Callback = function(v)
+        local n=tonumber(v)
+        if n then fov=math.clamp(n,10,300) end
     end
 })
-registerElement(aFOV, "Aim_FOV")
 
-local aIgnoreTeam = AimTab:Toggle({
-    Title = tr("Aim_IgnoreTeam"),
+AimTab:Toggle({
+    Title = "Ignorar compañeros de equipo",
     Default = false,
-    Callback = function(value) teamCheck = value end
+    Callback = function(v) teamCheck=v end
 })
-registerElement(aIgnoreTeam, "Aim_IgnoreTeam")
 
-local aIgnoreDead = AimTab:Toggle({
-    Title = tr("Aim_IgnoreDead"),
+AimTab:Toggle({
+    Title = "Ignorar jugadores muertos",
     Default = false,
-    Callback = function(value) killCheck = value end
+    Callback = function(v) killCheck=v end
 })
-registerElement(aIgnoreDead, "Aim_IgnoreDead")
 
-local aIgnoreWalls = AimTab:Toggle({
-    Title = tr("Aim_IgnoreWalls"),
+AimTab:Toggle({
+    Title = "Ignorar detrás de paredes",
     Default = false,
-    Callback = function(value) wallCheck = value end
+    Callback = function(v) wallCheck=v end
 })
-registerElement(aIgnoreWalls, "Aim_IgnoreWalls")
 
-local aBodyPart = AimTab:Dropdown({
-    Title = tr("Aim_BodyPart"),
-    Values = { "Head", "Torso", "HumanoidRootPart", "LeftLeg", "RightLeg" },
+AimTab:Dropdown({
+    Title = "Parte del cuerpo",
+    Values = {"Head","Torso","HumanoidRootPart","LeftLeg","RightLeg"},
     Default = "Head",
-    Callback = function(value) targetPartName = value end
+    Callback = function(v) targetPartName=v end
 })
-registerElement(aBodyPart, "Aim_BodyPart")
 
--- ============================================================
--- ESP
--- ============================================================
-local eTitle = ESPTab:Section({Title = tr("ESP_Title"), TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
-registerElement(eTitle, "ESP_Title")
+local espEnabled=false
+local showNames=false
+local showTracers=false
+local teamColors=true
+local highlights={}
+local names={}
+local lines={}
 
-local eOptions = ESPTab:Section({Title = tr("ESP_Options"), TextSize = 16, TextTransparency = 0.15})
-registerElement(eOptions, "ESP_Options")
-
-local espEnabled = false
-local showNames = false
-local showTracers = false
-local teamColors = true
-local highlightList = {}
-local nameTexts = {}
-local tracerLines = {}
-local connections = {}
-
-local function getPlayerColor(player)
-    if not teamColors then return Color3.fromRGB(255, 0, 0) end
-    if player.Team == LocalPlayer.Team then return Color3.fromRGB(0, 255, 0)
-    else return Color3.fromRGB(255, 0, 0) end
+local function getColor(p)
+    if not teamColors then return Color3.new(1,0,0) end
+    return p.Team==LocalPlayer.Team and Color3.new(0,1,0) or Color3.new(1,0,0)
 end
 
-local function applyHighlight(player)
-    if player == LocalPlayer then return end
-    local character = player.Character
-    if not character then return end
-    if highlightList[player] then return end
-    local highlight = Instance.new("Highlight")
-    highlight.FillColor = getPlayerColor(player)
-    highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
-    highlight.FillTransparency = 0.3
-    highlight.OutlineTransparency = 0
-    highlight.Parent = character
-    highlightList[player] = highlight
-end
+local ESPTab = ESPSection:Tab({
+    Title = "ESP",
+    Icon = "eye",
+    IconColor = Yellow,
+    IconShape = "Square",
+    Border = true
+})
 
-local function removeHighlight(player)
-    local highlight = highlightList[player]
-    if highlight then highlight:Destroy(); highlightList[player] = nil end
-end
-
-local function clearAllHighlights()
-    for player, highlight in pairs(highlightList) do highlight:Destroy() end
-    highlightList = {}
-end
-
-local function createNameText(player)
-    if nameTexts[player] then return end
-    local text = Drawing.new("Text")
-    text.Text = player.Name
-    text.Size = 14
-    text.Center = true
-    text.Outline = true
-    text.OutlineColor = Color3.fromRGB(0, 0, 0)
-    text.Color = getPlayerColor(player)
-    text.Visible = false
-    nameTexts[player] = text
-end
-
-local function removeNameText(player)
-    local text = nameTexts[player]
-    if text then text:Destroy(); nameTexts[player] = nil end
-end
-
-local function createTracer(player)
-    if tracerLines[player] then return end
-    local line = Drawing.new("Line")
-    line.Thickness = 1.5
-    line.Color = getPlayerColor(player)
-    line.Transparency = 0.7
-    line.Visible = false
-    tracerLines[player] = line
-end
-
-local function removeTracer(player)
-    local line = tracerLines[player]
-    if line then line:Destroy(); tracerLines[player] = nil end
-end
-
-local function clearAllDrawings()
-    for player in pairs(nameTexts) do removeNameText(player) end
-    for player in pairs(tracerLines) do removeTracer(player) end
-end
-
-local function disconnectAll()
-    for _, conn in pairs(connections) do conn:Disconnect() end
-    connections = {}
-end
-
-local function updateESP()
-    local viewport = Camera.ViewportSize
-    local centerBottom = Vector2.new(viewport.X / 2, viewport.Y)
-    for _, player in pairs(Players:GetPlayers()) do
-        if player == LocalPlayer then continue end
-        local character = player.Character
-        if not character then
-            if highlightList[player] then removeHighlight(player) end
-            if nameTexts[player] then removeNameText(player) end
-            if tracerLines[player] then removeTracer(player) end
-            continue
-        end
-        local head = character:FindFirstChild("Head")
-        if not head then
-            if highlightList[player] then removeHighlight(player) end
-            if nameTexts[player] then removeNameText(player) end
-            if tracerLines[player] then removeTracer(player) end
-            continue
-        end
-        local pos, onScreen = Camera:WorldToViewportPoint(head.Position)
-        if not onScreen then
-            if highlightList[player] then removeHighlight(player) end
-            if nameTexts[player] then removeNameText(player) end
-            if tracerLines[player] then removeTracer(player) end
-            continue
-        end
-        if espEnabled then
-            local color = getPlayerColor(player)
-            local highlight = highlightList[player]
-            if not highlight then applyHighlight(player)
-            else highlight.FillColor = color end
-            if showNames then
-                local text = nameTexts[player]
-                if not text then createNameText(player); text = nameTexts[player] end
-                text.Position = Vector2.new(pos.X, pos.Y - 30)
-                text.Color = color
-                text.Visible = true
-            else
-                if nameTexts[player] then nameTexts[player].Visible = false end
-            end
-            if showTracers then
-                local line = tracerLines[player]
-                if not line then createTracer(player); line = tracerLines[player] end
-                line.From = centerBottom
-                line.To = Vector2.new(pos.X, pos.Y)
-                line.Color = color
-                line.Visible = true
-            else
-                if tracerLines[player] then tracerLines[player].Visible = false end
-            end
-        end
-    end
-end
+ESPTab:Section({Title = "ESP", TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
+ESPTab:Section({Title = "Opciones de ESP", TextSize = 16, TextTransparency = 0.15})
 
 local function setupESP()
-    clearAllHighlights(); clearAllDrawings(); disconnectAll()
-    for _, player in pairs(Players:GetPlayers()) do
-        applyHighlight(player); createNameText(player); createTracer(player)
+    for _,p in ipairs(Players:GetPlayers()) do
+        if p==LocalPlayer then continue end
+        p.CharacterAdded:Connect(function(c)
+            local h=Instance.new("Highlight")
+            h.FillColor=getColor(p)
+            h.OutlineColor=Color3.new(1,1,1)
+            h.FillTransparency=0.3
+            h.OutlineTransparency=0
+            h.Parent=c
+            highlights[p]=h
+        end)
     end
-    local function onPlayerAdded(player)
-        applyHighlight(player); createNameText(player); createTracer(player)
-        local charConn = player.CharacterAdded:Connect(function() applyHighlight(player) end)
-        connections[player] = charConn
-    end
-    local function onPlayerRemoving(player)
-        removeHighlight(player); removeNameText(player); removeTracer(player)
-        if connections[player] then connections[player]:Disconnect(); connections[player] = nil end
-    end
-    connections.PlayerAdded = Players.PlayerAdded:Connect(onPlayerAdded)
-    connections.PlayerRemoving = Players.PlayerRemoving:Connect(onPlayerRemoving)
-    for _, player in pairs(Players:GetPlayers()) do
-        if not connections[player] then
-            local charConn = player.CharacterAdded:Connect(function() applyHighlight(player) end)
-            connections[player] = charConn
+    RunService:BindToRenderStep("ESPRender",Enum.RenderPriority.Camera.Value,function()
+        if not espEnabled then return end
+        local vp=Camera.ViewportSize
+        local bot=Vector2.new(vp.X/2,vp.Y)
+        for _,p in ipairs(Players:GetPlayers()) do
+            if p==LocalPlayer then continue end
+            local c=p.Character
+            if not c then continue end
+            local head=c:FindFirstChild("Head")
+            if not head then continue end
+            local pos,onscr=Camera:WorldToViewportPoint(head.Position)
+            if not onscr then continue end
+            local col=getColor(p)
+            if highlights[p] then highlights[p].FillColor=col end
+            if showNames then
+                if not names[p] then
+                    local t=Drawing.new("Text")
+                    t.Center=true
+                    t.Outline=true
+                    t.OutlineColor=Color3.new(0,0,0)
+                    t.Size=14
+                    names[p]=t
+                end
+                local tx=names[p]
+                tx.Text=p.Name
+                tx.Color=col
+                tx.Position=Vector2.new(pos.X,pos.Y-30)
+                tx.Visible=true
+            else
+                if names[p] then names[p].Visible=false end
+            end
+            if showTracers then
+                if not lines[p] then
+                    local l=Drawing.new("Line")
+                    l.Thickness=1.5
+                    l.Transparency=0.7
+                    lines[p]=l
+                end
+                local li=lines[p]
+                li.From=bot
+                li.To=Vector2.new(pos.X,pos.Y)
+                li.Color=col
+                li.Visible=true
+            else
+                if lines[p] then lines[p].Visible=false end
+            end
         end
-    end
-    RunService:BindToRenderStep("ESPRender", Enum.RenderPriority.Camera.Value, updateESP)
+    end)
 end
 
-local function disableESP()
-    clearAllHighlights(); clearAllDrawings(); disconnectAll()
-    RunService:UnbindFromRenderStep("ESPRender")
-end
-
-local eEnable = ESPTab:Toggle({
-    Title = tr("ESP_Enable"),
+ESPTab:Toggle({
+    Title = "Activar ESP",
     Default = false,
-    Callback = function(value)
-        espEnabled = value
-        if espEnabled then setupESP() else disableESP() end
+    Callback = function(v)
+        espEnabled=v
+        if v then setupESP() end
     end
 })
-registerElement(eEnable, "ESP_Enable")
 
-local eNames = ESPTab:Toggle({
-    Title = tr("ESP_ShowNames"),
+ESPTab:Toggle({
+    Title = "Mostrar nombres",
     Default = false,
-    Callback = function(value)
-        showNames = value
-        if not espEnabled then return end
-        for player in pairs(nameTexts) do
-            if nameTexts[player] then nameTexts[player].Visible = value end
-        end
-    end
+    Callback = function(v) showNames=v end
 })
-registerElement(eNames, "ESP_ShowNames")
 
-local eTracers = ESPTab:Toggle({
-    Title = tr("ESP_ShowTracers"),
+ESPTab:Toggle({
+    Title = "Mostrar tracers",
     Default = false,
-    Callback = function(value)
-        showTracers = value
-        if not espEnabled then return end
-        for player in pairs(tracerLines) do
-            if tracerLines[player] then tracerLines[player].Visible = value end
-        end
-    end
+    Callback = function(v) showTracers=v end
 })
-registerElement(eTracers, "ESP_ShowTracers")
 
-local eTeamColors = ESPTab:Toggle({
-    Title = tr("ESP_TeamColors"),
+ESPTab:Toggle({
+    Title = "Colores por equipo",
     Default = true,
-    Callback = function(value)
-        teamColors = value
-        if not espEnabled then return end
-        for player in pairs(highlightList) do
-            if highlightList[player] then highlightList[player].FillColor = getPlayerColor(player) end
-            if nameTexts[player] then nameTexts[player].Color = getPlayerColor(player) end
-            if tracerLines[player] then tracerLines[player].Color = getPlayerColor(player) end
-        end
-    end
+    Callback = function(v) teamColors=v end
 })
-registerElement(eTeamColors, "ESP_TeamColors")
 
--- ============================================================
--- PESTAÑA CREDITOS
--- ============================================================
-local cTitle = CreditsTab:Section({Title = tr("Cred_Title"), TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
-registerElement(cTitle, "Cred_Title")
+local CreditsTab = CreditsSection:Tab({
+    Title = "Creditos",
+    Icon = "star",
+    IconColor = Yellow,
+    IconShape = "Square",
+    Border = true
+})
 
-local cThanks = CreditsTab:Section({Title = tr("Cred_ThanksTo"), TextSize = 16, TextTransparency = 0.15})
-registerElement(cThanks, "Cred_ThanksTo")
+CreditsTab:Section({Title = "CREDITOS", TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
+CreditsTab:Section({Title = "Agradecimientos especiales a:", TextSize = 16, TextTransparency = 0.15})
 
-local cTikTok = CreditsTab:Button({
-    Title = tr("Cred_TikTokBtn"),
+CreditsTab:Button({
+    Title = "Pichigdasos Tiktok (Dev)",
     Description = "https://www.tiktok.com/@blue_dragon306",
     Callback = function()
         setclipboard("https://www.tiktok.com/@blue_dragon306?_r=1&_t=ZS-99LvlY3iKzk")
-        WindUI:Notify({Title = tr("Notif_Copied"), Description = tr("Notif_TikTokCopied"), Duration = 2})
+        WindUI:Notify({Title = "Copiado!", Description = "Enlace de TikTok copiado al portapapeles", Duration = 2})
     end
 })
-registerElement(cTikTok, "Cred_TikTokBtn")
 
-local cDiscord = CreditsTab:Button({
-    Title = tr("Cred_DiscordBtn"),
+CreditsTab:Button({
+    Title = "Pichigdasos User De Discord",
     Description = "miguel_minecraft87_64379",
     Callback = function()
         setclipboard("miguel_minecraft87_64379")
-        WindUI:Notify({Title = tr("Notif_Copied"), Description = tr("Notif_DiscordCopied"), Duration = 2})
+        WindUI:Notify({Title = "Copiado!", Description = "Usuario de Discord copiado al portapapeles", Duration = 2})
     end
 })
-registerElement(cDiscord, "Cred_DiscordBtn")
 
-local cYouTube = CreditsTab:Button({
-    Title = tr("Cred_YouTubeBtn"),
+CreditsTab:Button({
+    Title = "Chituk Youtube",
     Description = "https://youtube.com/@chituk_9",
     Callback = function()
         setclipboard("https://youtube.com/@chituk_9?si=dbjab9LutZnuNYDv")
-        WindUI:Notify({Title = tr("Notif_Copied"), Description = tr("Notif_YouTubeCopied"), Duration = 2})
+        WindUI:Notify({Title = "Copiado!", Description = "Enlace de YouTube copiado al portapapeles", Duration = 2})
     end
 })
-registerElement(cYouTube, "Cred_YouTubeBtn")
 
-local cDiscordServer = CreditsTab:Button({
-    Title = tr("Cred_DiscordServerBtn"),
+CreditsTab:Button({
+    Title = "Chituk Server De Discord",
     Description = "https://discord.gg/mdvByagDr3",
     Callback = function()
         setclipboard("https://discord.gg/mdvByagDr3")
-        WindUI:Notify({Title = tr("Notif_Copied"), Description = tr("Notif_DiscordServerCopied"), Duration = 2})
+        WindUI:Notify({Title = "Copiado!", Description = "Enlace del servidor de Discord copiado al portapapeles", Duration = 2})
     end
 })
-registerElement(cDiscordServer, "Cred_DiscordServerBtn")
 
-local cThanksUser = CreditsTab:Section({Title = tr("Cred_ThanksUser"), TextSize = 17, TextTransparency = 0.1})
-registerElement(cThanksUser, "Cred_ThanksUser")
+CreditsTab:Section({Title =
