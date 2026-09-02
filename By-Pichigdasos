@@ -18,7 +18,10 @@ local Window = WindUI:CreateWindow({
         Draggable = true,
         OnlyMobile = false,
         Scale = 1.0,
-        Color = ColorSequence.new(Yellow, DarkYellow)
+        Color = ColorSequence.new(
+            Yellow,
+            DarkYellow
+        )
     },
     Topbar = {
         Height = 44,
@@ -27,11 +30,11 @@ local Window = WindUI:CreateWindow({
 })
 
 local MainSection = Window:Section({Title = "Main"})
-local DiversionSection = Window:Section({Title = "Diversión"})
 local ProteccionesSection = Window:Section({Title = "Protecciones"})
 local WeaponsSection = Window:Section({Title = "Armas"})
 local ESPSection = Window:Section({Title = "ESP"})
 local AimSection = Window:Section({Title = "AimBot"})
+local DiversionSection = Window:Section({Title = "Diversion"})
 local CreditsSection = Window:Section({Title = "Creditos"})
 
 local MainTab = MainSection:Tab({
@@ -44,11 +47,13 @@ local MainTab = MainSection:Tab({
 
 MainTab:Section({Title = "CHITUK HUB", TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
 MainTab:Section({Title = "Bienvenido a Chituk Hub", TextSize = 16, TextTransparency = 0.15})
+
 MainTab:Section({
     Title = "⚠️ ADVERTENCIA IMPORTANTE",
     TextSize = 18,
     TextColor = Color3.fromRGB(255, 50, 50)
 })
+
 MainTab:Section({
     Title = "¿Estás seguro que quieres usar este script?\nPodrías ser baneado de Prison Life al usarlo incorrectamente.",
     TextSize = 14,
@@ -59,7 +64,7 @@ MainTab:Section({
 local vflyGui = nil
 
 MainTab:Toggle({
-    Title = "Vfly (Funciona Con Autos y también es un Fly Normal)",
+    Title = "Vfly (Funciona Con Autos y tambien es un Fly Normal)",
     Default = false,
     Callback = function(value)
         if value then
@@ -95,6 +100,7 @@ MainTab:Toggle({
             Instance.new("UICorner", Frame).CornerRadius = UDim.new(0, 10)
 
             local TextLabel = Instance.new("TextLabel", Frame)
+
             TextLabel.Size = UDim2.new(1, 0, 0, 40)
             TextLabel.Position = UDim2.new(0, 0, 0, 0)
             TextLabel.Text = "Chituk Hub Fly Gui"
@@ -104,8 +110,8 @@ MainTab:Toggle({
             TextLabel.TextSize = 20
             TextLabel.TextXAlignment = Enum.TextXAlignment.Center
             TextLabel.TextYAlignment = Enum.TextYAlignment.Center
-            
             local TextButton = Instance.new("TextButton", Frame)
+
             TextButton.Size = UDim2.new(0, 30, 0, 30)
             TextButton.Position = UDim2.new(1, -35, 0, 5)
             TextButton.Text = "V"
@@ -118,6 +124,7 @@ MainTab:Toggle({
             Instance.new("UICorner", TextButton).CornerRadius = UDim.new(0, 5)
 
             local TextBox = Instance.new("TextBox", Frame)
+
             TextBox.Size = UDim2.new(0, 70, 0, 60)
             TextBox.Position = UDim2.new(0, 75, 0, 45)
             TextBox.Text = "1"
@@ -130,6 +137,7 @@ MainTab:Toggle({
             Instance.new("UICorner", TextBox)
 
             local TextButton2 = Instance.new("TextButton", Frame)
+
             TextButton2.Size = UDim2.new(0, 55, 0, 60)
             TextButton2.Position = UDim2.new(0, 15, 0, 45)
             TextButton2.Text = "-"
@@ -140,6 +148,7 @@ MainTab:Toggle({
             Instance.new("UICorner", TextButton2)
 
             local TextButton3 = Instance.new("TextButton", Frame)
+
             TextButton3.Size = UDim2.new(0, 55, 0, 60)
             TextButton3.Position = UDim2.new(0, 150, 0, 45)
             TextButton3.Text = "+"
@@ -150,6 +159,7 @@ MainTab:Toggle({
             Instance.new("UICorner", TextButton3)
 
             local TextButton4 = Instance.new("TextButton", Frame)
+
             TextButton4.Size = UDim2.new(1, -30, 0, 45)
             TextButton4.Position = UDim2.new(0, 15, 0, 115)
             TextButton4.Text = "Fly"
@@ -159,7 +169,7 @@ MainTab:Toggle({
             TextButton4.Font = Enum.Font.SourceSans
             TextButton4.TextSize = 35
             Instance.new("UICorner", TextButton4)
-            
+
             TextButton.MouseButton1Click:Connect(function()
                 u8 = not u8
                 if u8 then
@@ -170,17 +180,17 @@ MainTab:Toggle({
                 Frame:TweenSize(UDim2.new(0, 220, 0, 170), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.3, true)
                 TextButton.Text = "V"
             end)
-            
+
             TextButton3.MouseButton1Click:Connect(function()
                 n1 += 1
                 TextBox.Text = tostring(n1)
             end)
-            
+
             TextButton2.MouseButton1Click:Connect(function()
                 n1 -= 1
                 TextBox.Text = tostring(n1)
             end)
-            
+
             TextBox.FocusLost:Connect(function(_)
                 local num = tonumber(TextBox.Text)
                 if num then
@@ -219,7 +229,7 @@ MainTab:Toggle({
                 end
                 return v34
             end
-            
+
             TextButton4.MouseButton1Click:Connect(function()
                 u5 = not u5
                 TextButton4.Text = not u5 and "Fly" or "UnFly"
@@ -290,6 +300,7 @@ MainTab:Toggle({
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local root = character:WaitForChild("HumanoidRootPart")
@@ -430,13 +441,14 @@ local oldMaterialQuality = UserSettings():GetService("UserGameSettings").SavedQu
 
 local function desactivarEfectos()
     for _, effect in ipairs(Lighting:GetChildren()) do
-        if effect:IsA("PostEffect") or effect:IsA("BlurEffect") or effect:IsA("BloomEffect") 
-            or effect:IsA("DepthOfFieldEffect") or effect:IsA("SunRaysEffect") 
+        if effect:IsA("PostEffect") or effect:IsA("BlurEffect") or effect:IsA("BloomEffect")
+            or effect:IsA("DepthOfFieldEffect") or effect:IsA("SunRaysEffect")
             or effect:IsA("ColorCorrectionEffect") then
             oldEffects[effect] = effect.Enabled
             effect.Enabled = false
         end
     end
+
     for _, desc in ipairs(workspace:GetDescendants()) do
         if desc:IsA("BasePart") then
             oldMaterials[desc] = desc.Material
@@ -445,7 +457,9 @@ local function desactivarEfectos()
             desc.CastShadow = false
         end
     end
+
     UserSettings():GetService("UserGameSettings").SavedQualityLevel = Enum.SavedQualitySetting.QualityLevel1
+
     Lighting.GlobalShadows = false
     Lighting.ShadowSoftness = 1
 end
@@ -457,19 +471,23 @@ local function restaurarEfectos()
         end
     end
     oldEffects = {}
+
     for part, material in pairs(oldMaterials) do
         if part and part.Parent then
             part.Material = material
         end
     end
     oldMaterials = {}
+
     for part, castShadow in pairs(oldShadows) do
         if part and part.Parent then
             part.CastShadow = castShadow
         end
     end
     oldShadows = {}
+
     UserSettings():GetService("UserGameSettings").SavedQualityLevel = oldMaterialQuality
+
     Lighting.GlobalShadows = oldLighting.GlobalShadows
     Lighting.ShadowSoftness = oldLighting.ShadowSoftness
 end
@@ -507,6 +525,7 @@ MainTab:Button({
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local remote = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("GiverPressed")
+
 local RETRY_DELAY = 0.3
 
 local function getToolFromRS()
@@ -516,9 +535,9 @@ local function getToolFromRS()
 end
 
 local function getToolFromPlayers()
-    for _, player in ipairs(Players:GetPlayers()) do
-        if player ~= LocalPlayer then
-            local backpack = player:FindFirstChild("Backpack")
+    for _, p in ipairs(Players:GetPlayers()) do
+        if p ~= player then
+            local backpack = p:FindFirstChild("Backpack")
             local tool = backpack and backpack:FindFirstChild("Key card")
             if tool then
                 return tool
@@ -528,11 +547,11 @@ local function getToolFromPlayers()
 end
 
 local function tryGiveKeycard()
-    local backpack = LocalPlayer:WaitForChild("Backpack")
+    local backpack = player:WaitForChild("Backpack")
     if backpack:FindFirstChild("Key card") then
         return true
     end
-    if LocalPlayer.Team and LocalPlayer.Team.Name == "Guards" then
+    if player.Team and player.Team.Name == "Guards" then
         return true
     end
     local source = getToolFromRS() or getToolFromPlayers()
@@ -596,8 +615,8 @@ local function getTouchGiver(gunName)
 end
 
 local function hasGun(name)
-    local backpack = LocalPlayer:FindFirstChild("Backpack")
-    local char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local backpack = player:FindFirstChild("Backpack")
+    local char = player.Character or player.CharacterAdded:Wait()
     return (backpack and backpack:FindFirstChild(name)) or (char and char:FindFirstChild(name))
 end
 
@@ -612,7 +631,7 @@ local function GetGun(gunName)
         WindUI:Notify({Title = "Error", Description = "No se encontró el TouchGiver para " .. gunName, Duration = 3})
         return false
     end
-    local char = LocalPlayer.Character
+    local char = player.Character
     if not char then
         WindUI:Notify({Title = "Error", Description = "Personaje no encontrado", Duration = 2})
         return false
@@ -685,43 +704,52 @@ ProteccionesTab:Section({Title = "Anti Arrest y Anti Taser", TextSize = 16, Text
 local antiArrestEnabled = false
 local antiTaseEnabled = false
 local animConnection = nil
+
 local ARREST_ANIMATION = "rbxassetid://287112271"
 local TASE_ANIMATION = "rbxassetid://279227693"
 
 local function setupProtectionConnection()
     if animConnection then animConnection:Disconnect() end
+
     local function onCharacterAdded(char)
         local humanoid = char:WaitForChild("Humanoid")
         local animator = humanoid:WaitForChild("Animator")
+
         animator.AnimationPlayed:Connect(function(des)
             if antiArrestEnabled and des.Animation.AnimationId == ARREST_ANIMATION then
-                local Humanoid = LocalPlayer.Character:WaitForChild("Humanoid")
+                local Humanoid = player.Character:WaitForChild("Humanoid")
                 Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
+
                 local cpos = char:WaitForChild("HumanoidRootPart").CFrame
-                local wasCriminal = (LocalPlayer.TeamColor.Name == "Really red")
-                LocalPlayer.CharacterAdded:Wait()
-                repeat task.wait() until LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                local wasCriminal = (player.TeamColor.Name == "Really red")
+
+                player.CharacterAdded:Wait()
+                repeat task.wait() until player.Character:FindFirstChild("HumanoidRootPart")
                 task.wait(0.1)
+
                 if wasCriminal then
                     pcall(function()
-                        LocalPlayer.Character.HumanoidRootPart.CFrame = cpos
+                        player.Character.HumanoidRootPart.CFrame = cpos
                     end)
                 end
             end
+
             if antiTaseEnabled and des.Animation.AnimationId == TASE_ANIMATION then
                 des:Stop()
                 des:Destroy()
-                LocalPlayer.Character.Humanoid.PlatformStand = false
-                LocalPlayer.Character.Humanoid.Sit = false
-                LocalPlayer.Character.Humanoid.WalkSpeed = 16
-                LocalPlayer.Character.Humanoid.JumpPower = 50
+                player.Character.Humanoid.PlatformStand = false
+                player.Character.Humanoid.Sit = false
+                player.Character.Humanoid.WalkSpeed = 16
+                player.Character.Humanoid.JumpPower = 50
             end
         end)
     end
-    if LocalPlayer.Character then
-        onCharacterAdded(LocalPlayer.Character)
+
+    if player.Character then
+        onCharacterAdded(player.Character)
     end
-    animConnection = LocalPlayer.CharacterAdded:Connect(onCharacterAdded)
+
+    animConnection = player.CharacterAdded:Connect(onCharacterAdded)
 end
 
 ProteccionesTab:Toggle({
@@ -791,292 +819,306 @@ WeaponsTab:Button({
 })
 
 local DiversionTab = DiversionSection:Tab({
-    Title = "Diversión",
-    Icon = "smile",
+    Title = "Diversion",
+    Icon = "gamepad",
     IconColor = Yellow,
     IconShape = "Square",
     Border = true
 })
 
-local airWalk = false
-local air = Instance.new("Part")
-air.Name = "Airwalk"
-air.Size = Vector3.new(7, 2, 3)
-air.Transparency = 1
-air.Anchored = true
-air.CanCollide = false
-air.Parent = workspace
+DiversionTab:Section({Title = "DIVERSION", TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
+DiversionTab:Section({Title = "Funciones divertidas", TextSize = 16, TextTransparency = 0.15})
 
-task.spawn(function()
-    while task.wait() do
-        if airWalk then
-            local chr = player.Character
-            local hrp = chr and chr:FindFirstChild("HumanoidRootPart")
-            if hrp then
-                air.CFrame = hrp.CFrame + Vector3.new(0, -4, 0)
-            end
-        end
+local airWalkEnabled = false
+local airPart = nil
+local airWalkConnection
+
+local function createAirPart()
+    if airPart then
+        airPart:Destroy()
     end
-end)
+    airPart = Instance.new("Part")
+    airPart.Name = "Airwalk"
+    airPart.Size = Vector3.new(7, 2, 3)
+    airPart.Transparency = 1
+    airPart.Anchored = true
+    airPart.CanCollide = false
+    airPart.Parent = workspace
+end
+
+local function startAirWalk()
+    createAirPart()
+    airWalkConnection = RunService.RenderStepped:Connect(function()
+        if not airWalkEnabled then return end
+        local char = player.Character
+        local hrp = char and char:FindFirstChild("HumanoidRootPart")
+        if hrp and airPart then
+            airPart.CFrame = hrp.CFrame + Vector3.new(0, -4, 0)
+            airPart.CanCollide = true
+        end
+    end)
+end
+
+local function stopAirWalk()
+    if airWalkConnection then
+        airWalkConnection:Disconnect()
+        airWalkConnection = nil
+    end
+    if airPart then
+        airPart:Destroy()
+        airPart = nil
+    end
+end
 
 DiversionTab:Toggle({
     Title = "Air Walk",
     Default = false,
-    Callback = function(v)
-        airWalk = v
-        air.CanCollide = v
+    Callback = function(value)
+        airWalkEnabled = value
+        if value then
+            startAirWalk()
+        else
+            stopAirWalk()
+        end
     end
 })
 
-local UserInputService = game:GetService("UserInputService")
 local FlipCooldown = false
+local frontFlipGui = nil
 
 local function FortniteFlips()
-    if FlipCooldown then return end
+    if FlipCooldown then
+        return
+    end
+
     FlipCooldown = true
-    local chr = player.Character
-    local hrp = chr and chr:FindFirstChild("HumanoidRootPart")
-    local hum = chr and chr:FindFirstChildOfClass("Humanoid")
-    local animator = hum and hum:FindFirstChildOfClass("Animator")
-    local animate = chr and chr:FindFirstChild("Animate")
-    if not hrp or not hum then FlipCooldown = false return end
+
+    local character = player.Character
+    local hrp = character and character:FindFirstChild("HumanoidRootPart")
+    local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+    local animator = humanoid and humanoid:FindFirstChildOfClass("Animator")
+    local animate = character and character:FindFirstChild("Animate")
+
+    if not hrp or not humanoid then
+        FlipCooldown = false
+        return
+    end
+
     local savedTracks = {}
+
     if animator then
         for _, track in ipairs(animator:GetPlayingAnimationTracks()) do
-            savedTracks[#savedTracks+1] = {track=track,time=track.TimePosition,speed=track.Speed,weight=track.WeightCurrent}
+            savedTracks[#savedTracks + 1] = {
+                track = track,
+                time = track.TimePosition,
+                speed = track.Speed,
+                weight = track.WeightCurrent
+            }
+
             track:Stop(0)
         end
     end
+
     local animateWasEnabled = animate and animate.Enabled
-    if animate then animate.Enabled = false end
-    local oldAutoRotate = hum.AutoRotate
-    hum.AutoRotate = false
-    hum:ChangeState(Enum.HumanoidStateType.Physics)
+
+    if animate then
+        animate.Enabled = false
+    end
+
+    local oldAutoRotate = humanoid.AutoRotate
+    humanoid.AutoRotate = false
+
+    humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+
     local duration = 0.45
     local steps = 120
+
     local startCFrame = hrp.CFrame
     local forwardVector = startCFrame.LookVector
-    local upVector = Vector3.new(0,1,0)
+    local upVector = Vector3.new(0, 1, 0)
+
     task.spawn(function()
         local startTime = tick()
-        for i=1,steps do
-            if not chr.Parent or hum.Health <= 0 then break end
-            local t = i/steps
-            local height = 4*(t-t^2)*10
-            local nextPos = startCFrame.Position + forwardVector*35*t + upVector*height
-            local rotation = startCFrame.Rotation * CFrame.Angles(-math.rad(i*(360/steps)),0,0)
-            hrp.CFrame = CFrame.new(nextPos)*rotation
-            local elapsed = tick()-startTime
-            local expected = (duration/steps)*i
-            local waitTime = expected-elapsed
-            if waitTime>0 then task.wait(waitTime) end
+
+        for i = 1, steps do
+            if not character.Parent or humanoid.Health <= 0 then
+                break
+            end
+
+            local t = i / steps
+            local height = 4 * (t - t ^ 2) * 10
+
+            local nextPos =
+                startCFrame.Position
+                + forwardVector * (35 * t)
+                + upVector * height
+
+            local rotation =
+                startCFrame.Rotation
+                * CFrame.Angles(
+                    -math.rad(i * (360 / steps)),
+                    0,
+                    0
+                )
+
+            hrp.CFrame = CFrame.new(nextPos) * rotation
+
+            local elapsedTime = tick() - startTime
+            local expectedTime = (duration / steps) * i
+            local waitTime = expectedTime - elapsedTime
+
+            if waitTime > 0 then
+                task.wait(waitTime)
+            end
         end
-        if chr.Parent and hum.Health>0 then
-            hrp.CFrame = CFrame.new(startCFrame.Position+forwardVector*35)*startCFrame.Rotation
-            hum.AutoRotate = oldAutoRotate
-            if animate then animate.Enabled = animateWasEnabled~=false end
-            hum:ChangeState(Enum.HumanoidStateType.GettingUp)
+
+        if character.Parent and humanoid.Health > 0 then
+            hrp.CFrame =
+                CFrame.new(startCFrame.Position + forwardVector * 35)
+                * startCFrame.Rotation
+
+            humanoid.AutoRotate = oldAutoRotate
+
+            if animate then
+                animate.Enabled = animateWasEnabled ~= false
+            end
+
+            humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
+
             task.wait(0.05)
-            hum:ChangeState(Enum.HumanoidStateType.Running)
+
+            humanoid:ChangeState(Enum.HumanoidStateType.Running)
+
             task.wait(0.1)
+
             if animator then
-                for _,dat in ipairs(savedTracks) do
-                    if dat.track and dat.track.Parent then
+                for _, data in ipairs(savedTracks) do
+                    if data.track and data.track.Parent then
                         pcall(function()
-                            dat.track:Play(0.1,dat.weight,dat.speed)
-                            dat.track.TimePosition = dat.time
+                            data.track:Play(
+                                0.1,
+                                data.weight,
+                                data.speed
+                            )
+
+                            data.track.TimePosition = data.time
                         end)
                     end
                 end
             end
         end
+
         task.wait(0.25)
         FlipCooldown = false
     end)
 end
 
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "ChitukHubFrontFlip"
-ScreenGui.ResetOnSpawn = false
-ScreenGui.Parent = game:GetService("CoreGui")
-
-local Main = Instance.new("Frame")
-Main.Size = UDim2.new(0,160,0,85)
-Main.Position = UDim2.new(0.5,-80,0.75,0)
-Main.BackgroundTransparency = 1
-Main.Active = true
-Main.Parent = ScreenGui
-
-local Title = Instance.new("TextLabel")
-Title.Size = UDim2.new(1,0,0,25)
-Title.Position = UDim2.new(0,0,0,0)
-Title.BackgroundTransparency = 1
-Title.Text = "Chituk Hub-FrontFlip"
-Title.TextColor3 = Color3.fromRGB(255,255,255)
-Title.TextTransparency = 0.45
-Title.TextSize = 14
-Title.Font = Enum.Font.GothamMedium
-Title.Parent = Main
-
-local Button = Instance.new("TextButton")
-Button.Size = UDim2.new(0,140,0,50)
-Button.Position = UDim2.new(0.5,-70,0,30)
-Button.BackgroundColor3 = Color3.fromRGB(15,15,15)
-Button.BorderSizePixel = 0
-Button.Text = "FRONT FLIP"
-Button.TextColor3 = Color3.fromRGB(255,255,255)
-Button.TextSize = 17
-Button.Font = Enum.Font.GothamBold
-Button.AutoButtonColor = true
-Button.Parent = Main
-
-local Corner = Instance.new("UICorner")
-Corner.CornerRadius = UDim.new(0,8)
-Corner.Parent = Button
-
-local dragging = false
-local dragStart,startPos
-Main.InputBegan:Connect(function(input)
-    if input.UserInputType==Enum.UserInputType.MouseButton1 or input.UserInputType==Enum.UserInputType.Touch then
-        dragging=true
-        dragStart=input.Position
-        startPos=Main.Position
-        input.Changed:Connect(function()
-            if input.UserInputState==Enum.UserInputState.End then dragging=false end
-        end)
+local function createFrontFlipGui()
+    if frontFlipGui then
+        frontFlipGui:Destroy()
     end
-end)
-UserInputService.InputChanged:Connect(function(input)
-    if not dragging then return end
-    if input.UserInputType==Enum.UserInputType.MouseMovement or input.UserInputType==Enum.UserInputType.Touch then
-        local delta=input.Position-dragStart
-        Main.Position=UDim2.new(startPos.X.Scale,startPos.X.Offset+delta.X,startPos.Y.Scale,startPos.Y.Offset+delta.Y)
-    end
-end)
-Button.Activated:Connect(FortniteFlips)
 
-local Camera = workspace.CurrentCamera
-local aimbotEnabled = false
-local fov = 80
-local teamCheck = false
-local killCheck = false
-local wallCheck = false
-local targetPartName = "Head"
+    local UserInputService = game:GetService("UserInputService")
 
-local circle = Drawing.new("Circle")
-circle.Thickness = 1.5
-circle.Color = Color3.fromRGB(255,255,255)
-circle.Filled = false
-circle.Visible = false
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Name = "ChitukHubFrontFlip"
+    ScreenGui.ResetOnSpawn = false
+    ScreenGui.Parent = game:GetService("CoreGui")
+    frontFlipGui = ScreenGui
 
-local function findBestTarget()
-    local bestDist=1e999
-    local bestPlayer=nil
-    local center=Vector2.new(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2)
-    for _,p in pairs(Players:GetPlayers()) do
-        if p==LocalPlayer then continue end
-        local c=p.Character
-        if not c then continue end
-        local tp=c:FindFirstChild(targetPartName)
-        if not tp then continue end
-        if teamCheck and p.Team==LocalPlayer.Team then continue end
-        local hum=c:FindFirstChildOfClass("Humanoid")
-        if killCheck and (not hum or hum.Health<=0) then continue end
-        if wallCheck then
-            local origin=Camera.CFrame.Position
-            local dir=(tp.Position-origin).Unit*500
-            local params=RaycastParams.new()
-            params.FilterType=Enum.RaycastFilterType.Blacklist
-            params.FilterDescendantsInstances={LocalPlayer.Character}
-            local res=workspace:Raycast(origin,dir,params)
-            if res and not c:IsAncestorOf(res.Instance) then continue end
+    local Main = Instance.new("Frame")
+    Main.Size = UDim2.new(0, 160, 0, 85)
+    Main.Position = UDim2.new(0.5, -80, 0.75, 0)
+    Main.BackgroundTransparency = 1
+    Main.Active = true
+    Main.Parent = ScreenGui
+
+    local Title = Instance.new("TextLabel")
+    Title.Size = UDim2.new(1, 0, 0, 25)
+    Title.Position = UDim2.new(0, 0, 0, 0)
+    Title.BackgroundTransparency = 1
+    Title.Text = "Chituk Hub-FrontFlip"
+    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Title.TextTransparency = 0.45
+    Title.TextSize = 14
+    Title.Font = Enum.Font.GothamMedium
+    Title.Parent = Main
+
+    local Button = Instance.new("TextButton")
+    Button.Size = UDim2.new(0, 140, 0, 50)
+    Button.Position = UDim2.new(0.5, -70, 0, 30)
+    Button.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+    Button.BorderSizePixel = 0
+    Button.Text = "FRONT FLIP"
+    Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Button.TextSize = 17
+    Button.Font = Enum.Font.GothamBold
+    Button.AutoButtonColor = true
+    Button.Parent = Main
+
+    local Corner = Instance.new("UICorner")
+    Corner.CornerRadius = UDim.new(0, 8)
+    Corner.Parent = Button
+
+    local dragging = false
+    local dragStart
+    local startPos
+
+    Main.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1
+            or input.UserInputType == Enum.UserInputType.Touch then
+
+            dragging = true
+            dragStart = input.Position
+            startPos = Main.Position
+
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
         end
-        local sp,onScr=Camera:WorldToViewportPoint(tp.Position)
-        if onScr then
-            local d=(Vector2.new(sp.X,sp.Y)-center).Magnitude
-            if d<fov and d<bestDist then bestDist=d bestPlayer=p end
+    end)
+
+    UserInputService.InputChanged:Connect(function(input)
+        if not dragging then
+            return
         end
-    end
-    return bestPlayer
+
+        if input.UserInputType == Enum.UserInputType.MouseMovement
+            or input.UserInputType == Enum.UserInputType.Touch then
+
+            local delta = input.Position - dragStart
+
+            Main.Position = UDim2.new(
+                startPos.X.Scale,
+                startPos.X.Offset + delta.X,
+                startPos.Y.Scale,
+                startPos.Y.Offset + delta.Y
+            )
+        end
+    end)
+
+    Button.Activated:Connect(function()
+        FortniteFlips()
+    end)
 end
 
-RunService:BindToRenderStep("AimbotRender",Enum.RenderPriority.Camera.Value+1,function()
-    local center=Vector2.new(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2)
-    circle.Position=center
-    circle.Radius=fov
-    circle.Visible=aimbotEnabled
-    if aimbotEnabled then
-        local tgt=findBestTarget()
-        if tgt and tgt.Character and tgt.Character:FindFirstChild(targetPartName) then
-            Camera.CFrame=CFrame.new(Camera.CFrame.Position,tgt.Character[targetPartName].Position)
+local frontFlipToggle
+frontFlipToggle = DiversionTab:Toggle({
+    Title = "FrontFlip",
+    Default = false,
+    Callback = function(value)
+        if value then
+            createFrontFlipGui()
+        else
+            if frontFlipGui then
+                frontFlipGui:Destroy()
+                frontFlipGui = nil
+            end
         end
     end
-end)
-
-local AimTab = AimSection:Tab({
-    Title = "AimBot",
-    Icon = "crosshair",
-    IconColor = Yellow,
-    IconShape = "Square",
-    Border = true
 })
-
-AimTab:Section({Title = "AIMBOT", TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
-AimTab:Section({Title = "Opciones de AimBot", TextSize = 16, TextTransparency = 0.15})
-
-AimTab:Toggle({
-    Title = "Activar AimBot",
-    Default = false,
-    Callback = function(v) aimbotEnabled=v end
-})
-
-AimTab:Input({
-    Title = "FOV (rango 10-300)",
-    Default = "80",
-    Numeric = true,
-    Callback = function(v)
-        local n=tonumber(v)
-        if n then fov=math.clamp(n,10,300) end
-    end
-})
-
-AimTab:Toggle({
-    Title = "Ignorar compañeros de equipo",
-    Default = false,
-    Callback = function(v) teamCheck=v end
-})
-
-AimTab:Toggle({
-    Title = "Ignorar jugadores muertos",
-    Default = false,
-    Callback = function(v) killCheck=v end
-})
-
-AimTab:Toggle({
-    Title = "Ignorar detrás de paredes",
-    Default = false,
-    Callback = function(v) wallCheck=v end
-})
-
-AimTab:Dropdown({
-    Title = "Parte del cuerpo",
-    Values = {"Head","Torso","HumanoidRootPart","LeftLeg","RightLeg"},
-    Default = "Head",
-    Callback = function(v) targetPartName=v end
-})
-
-local espEnabled=false
-local showNames=false
-local showTracers=false
-local teamColors=true
-local highlights={}
-local names={}
-local lines={}
-
-local function getColor(p)
-    if not teamColors then return Color3.new(1,0,0) end
-    return p.Team==LocalPlayer.Team and Color3.new(0,1,0) or Color3.new(1,0,0)
-end
 
 local ESPTab = ESPSection:Tab({
     Title = "ESP",
@@ -1089,95 +1131,16 @@ local ESPTab = ESPSection:Tab({
 ESPTab:Section({Title = "ESP", TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
 ESPTab:Section({Title = "Opciones de ESP", TextSize = 16, TextTransparency = 0.15})
 
-local function setupESP()
-    for _,p in ipairs(Players:GetPlayers()) do
-        if p==LocalPlayer then continue end
-        p.CharacterAdded:Connect(function(c)
-            local h=Instance.new("Highlight")
-            h.FillColor=getColor(p)
-            h.OutlineColor=Color3.new(1,1,1)
-            h.FillTransparency=0.3
-            h.OutlineTransparency=0
-            h.Parent=c
-            highlights[p]=h
-        end)
-    end
-    RunService:BindToRenderStep("ESPRender",Enum.RenderPriority.Camera.Value,function()
-        if not espEnabled then return end
-        local vp=Camera.ViewportSize
-        local bot=Vector2.new(vp.X/2,vp.Y)
-        for _,p in ipairs(Players:GetPlayers()) do
-            if p==LocalPlayer then continue end
-            local c=p.Character
-            if not c then continue end
-            local head=c:FindFirstChild("Head")
-            if not head then continue end
-            local pos,onscr=Camera:WorldToViewportPoint(head.Position)
-            if not onscr then continue end
-            local col=getColor(p)
-            if highlights[p] then highlights[p].FillColor=col end
-            if showNames then
-                if not names[p] then
-                    local t=Drawing.new("Text")
-                    t.Center=true
-                    t.Outline=true
-                    t.OutlineColor=Color3.new(0,0,0)
-                    t.Size=14
-                    names[p]=t
-                end
-                local tx=names[p]
-                tx.Text=p.Name
-                tx.Color=col
-                tx.Position=Vector2.new(pos.X,pos.Y-30)
-                tx.Visible=true
-            else
-                if names[p] then names[p].Visible=false end
-            end
-            if showTracers then
-                if not lines[p] then
-                    local l=Drawing.new("Line")
-                    l.Thickness=1.5
-                    l.Transparency=0.7
-                    lines[p]=l
-                end
-                local li=lines[p]
-                li.From=bot
-                li.To=Vector2.new(pos.X,pos.Y)
-                li.Color=col
-                li.Visible=true
-            else
-                if lines[p] then lines[p].Visible=false end
-            end
-        end
-    end)
-end
-
-ESPTab:Toggle({
-    Title = "Activar ESP",
-    Default = false,
-    Callback = function(v)
-        espEnabled=v
-        if v then setupESP() end
-    end
+local AimTab = AimSection:Tab({
+    Title = "AimBot",
+    Icon = "crosshair",
+    IconColor = Yellow,
+    IconShape = "Square",
+    Border = true
 })
 
-ESPTab:Toggle({
-    Title = "Mostrar nombres",
-    Default = false,
-    Callback = function(v) showNames=v end
-})
-
-ESPTab:Toggle({
-    Title = "Mostrar tracers",
-    Default = false,
-    Callback = function(v) showTracers=v end
-})
-
-ESPTab:Toggle({
-    Title = "Colores por equipo",
-    Default = true,
-    Callback = function(v) teamColors=v end
-})
+AimTab:Section({Title = "AIMBOT", TextSize = 24, FontWeight = Enum.FontWeight.SemiBold})
+AimTab:Section({Title = "Opciones de AimBot", TextSize = 16, TextTransparency = 0.15})
 
 local CreditsTab = CreditsSection:Tab({
     Title = "Creditos",
@@ -1226,4 +1189,404 @@ CreditsTab:Button({
     end
 })
 
-CreditsTab:Section({Title =
+CreditsTab:Section({Title = "Y A ti por usar el Script💖", TextSize = 17, TextTransparency = 0.1})
+
+local Camera = workspace.CurrentCamera
+
+local aimbotEnabled = false
+local fov = 80
+local teamCheck = false
+local killCheck = false
+local wallCheck = false
+local targetPartName = "Head"
+
+local circle = Drawing.new("Circle")
+circle.Thickness = 1.5
+circle.Color = Color3.fromRGB(255, 255, 255)
+circle.Filled = false
+circle.Visible = false
+
+local function findBestTarget()
+    local bestDist = 1e999
+    local bestPlayer = nil
+    local center = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
+    for _, targetPlayer in pairs(Players:GetPlayers()) do
+        if targetPlayer == player then continue end
+        local targetCharacter = targetPlayer.Character
+        if not targetCharacter then continue end
+        local targetPart = targetCharacter:FindFirstChild(targetPartName)
+        if not targetPart then continue end
+        if teamCheck and targetPlayer.Team == player.Team then continue end
+        local targetHumanoid = targetCharacter:FindFirstChildOfClass("Humanoid")
+        if killCheck and (not targetHumanoid or targetHumanoid.Health <= 0) then continue end
+        if wallCheck then
+            local origin = Camera.CFrame.Position
+            local direction = (targetPart.Position - origin).Unit * 500
+            local params = RaycastParams.new()
+            params.FilterType = Enum.RaycastFilterType.Blacklist
+            params.FilterDescendantsInstances = { player.Character }
+            local result = workspace:Raycast(origin, direction, params)
+            if result and not targetCharacter:IsAncestorOf(result.Instance) then
+                continue
+            end
+        end
+        local screenPos, onScreen = Camera:WorldToViewportPoint(targetPart.Position)
+        if onScreen then
+            local dist = (Vector2.new(screenPos.X, screenPos.Y) - center).Magnitude
+            if dist < fov and dist < bestDist then
+                bestDist = dist
+                bestPlayer = targetPlayer
+            end
+        end
+    end
+    return bestPlayer
+end
+
+RunService:BindToRenderStep("AimbotRender", Enum.RenderPriority.Camera.Value + 1, function()
+    local center = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
+    circle.Position = center
+    circle.Radius = fov
+    circle.Visible = aimbotEnabled
+    if aimbotEnabled then
+        local target = findBestTarget()
+        if target and target.Character and target.Character:FindFirstChild(targetPartName) then
+            Camera.CFrame = CFrame.new(Camera.CFrame.Position, target.Character[targetPartName].Position)
+        end
+    end
+end)
+
+AimTab:Toggle({
+    Title = "Activar AimBot",
+    Default = false,
+    Callback = function(value)
+        aimbotEnabled = value
+    end
+})
+
+AimTab:Input({
+    Title = "FOV (rango 10-300)",
+    Default = "80",
+    Numeric = true,
+    Callback = function(value)
+        local num = tonumber(value)
+        if num then
+            num = math.clamp(num, 10, 300)
+            fov = num
+        end
+    end
+})
+
+AimTab:Toggle({
+    Title = "Ignorar compañeros de equipo",
+    Default = false,
+    Callback = function(value)
+        teamCheck = value
+    end
+})
+
+AimTab:Toggle({
+    Title = "Ignorar jugadores muertos",
+    Default = false,
+    Callback = function(value)
+        killCheck = value
+    end
+})
+
+AimTab:Toggle({
+    Title = "Ignorar detrás de paredes",
+    Default = false,
+    Callback = function(value)
+        wallCheck = value
+    end
+})
+
+AimTab:Dropdown({
+    Title = "Parte del cuerpo",
+    Values = { "Head", "Torso", "HumanoidRootPart", "LeftLeg", "RightLeg" },
+    Default = "Head",
+    Callback = function(value)
+        targetPartName = value
+    end
+})
+
+local espEnabled = false
+local showNames = false
+local showTracers = false
+local teamColors = true
+
+local highlightList = {}
+local nameTexts = {}
+local tracerLines = {}
+local connections = {}
+
+local function getPlayerColor(targetPlayer)
+    if not teamColors then
+        return Color3.fromRGB(255, 0, 0)
+    end
+    if targetPlayer.Team == player.Team then
+        return Color3.fromRGB(0, 255, 0)
+    else
+        return Color3.fromRGB(255, 0, 0)
+    end
+end
+
+local function applyHighlight(targetPlayer)
+    if targetPlayer == player then return end
+    local targetCharacter = targetPlayer.Character
+    if not targetCharacter then return end
+    if highlightList[targetPlayer] then return end
+    local highlight = Instance.new("Highlight")
+    highlight.FillColor = getPlayerColor(targetPlayer)
+    highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+    highlight.FillTransparency = 0.3
+    highlight.OutlineTransparency = 0
+    highlight.Parent = targetCharacter
+    highlightList[targetPlayer] = highlight
+end
+
+local function removeHighlight(targetPlayer)
+    local highlight = highlightList[targetPlayer]
+    if highlight then
+        highlight:Destroy()
+        highlightList[targetPlayer] = nil
+    end
+end
+
+local function clearAllHighlights()
+    for targetPlayer, highlight in pairs(highlightList) do
+        highlight:Destroy()
+    end
+    highlightList = {}
+end
+
+local function createNameText(targetPlayer)
+    if nameTexts[targetPlayer] then return end
+    local text = Drawing.new("Text")
+    text.Text = targetPlayer.Name
+    text.Size = 14
+    text.Center = true
+    text.Outline = true
+    text.OutlineColor = Color3.fromRGB(0, 0, 0)
+    text.Color = getPlayerColor(targetPlayer)
+    text.Visible = false
+    nameTexts[targetPlayer] = text
+end
+
+local function removeNameText(targetPlayer)
+    local text = nameTexts[targetPlayer]
+    if text then
+        text:Destroy()
+        nameTexts[targetPlayer] = nil
+    end
+end
+
+local function createTracer(targetPlayer)
+    if tracerLines[targetPlayer] then return end
+    local line = Drawing.new("Line")
+    line.Thickness = 1.5
+    line.Color = getPlayerColor(targetPlayer)
+    line.Transparency = 0.7
+    line.Visible = false
+    tracerLines[targetPlayer] = line
+end
+
+local function removeTracer(targetPlayer)
+    local line = tracerLines[targetPlayer]
+    if line then
+        line:Destroy()
+        tracerLines[targetPlayer] = nil
+    end
+end
+
+local function clearAllDrawings()
+    for targetPlayer in pairs(nameTexts) do
+        removeNameText(targetPlayer)
+    end
+    for targetPlayer in pairs(tracerLines) do
+        removeTracer(targetPlayer)
+    end
+end
+
+local function disconnectAll()
+    for _, conn in pairs(connections) do
+        conn:Disconnect()
+    end
+    connections = {}
+end
+
+local function updateESP()
+    local viewport = Camera.ViewportSize
+    local centerBottom = Vector2.new(viewport.X / 2, viewport.Y)
+    for _, targetPlayer in pairs(Players:GetPlayers()) do
+        if targetPlayer == player then continue end
+        local targetCharacter = targetPlayer.Character
+        if not targetCharacter then
+            if highlightList[targetPlayer] then removeHighlight(targetPlayer) end
+            if nameTexts[targetPlayer] then removeNameText(targetPlayer) end
+            if tracerLines[targetPlayer] then removeTracer(targetPlayer) end
+            continue
+        end
+        local head = targetCharacter:FindFirstChild("Head")
+        if not head then
+            if highlightList[targetPlayer] then removeHighlight(targetPlayer) end
+            if nameTexts[targetPlayer] then removeNameText(targetPlayer) end
+            if tracerLines[targetPlayer] then removeTracer(targetPlayer) end
+            continue
+        end
+        local pos, onScreen = Camera:WorldToViewportPoint(head.Position)
+        if not onScreen then
+            if highlightList[targetPlayer] then removeHighlight(targetPlayer) end
+            if nameTexts[targetPlayer] then removeNameText(targetPlayer) end
+            if tracerLines[targetPlayer] then removeTracer(targetPlayer) end
+            continue
+        end
+        if espEnabled then
+            local color = getPlayerColor(targetPlayer)
+            local highlight = highlightList[targetPlayer]
+            if not highlight then
+                applyHighlight(targetPlayer)
+            else
+                highlight.FillColor = color
+            end
+            if showNames then
+                local text = nameTexts[targetPlayer]
+                if not text then
+                    createNameText(targetPlayer)
+                    text = nameTexts[targetPlayer]
+                end
+                text.Position = Vector2.new(pos.X, pos.Y - 30)
+                text.Color = color
+                text.Visible = true
+            else
+                if nameTexts[targetPlayer] then
+                    nameTexts[targetPlayer].Visible = false
+                end
+            end
+            if showTracers then
+                local line = tracerLines[targetPlayer]
+                if not line then
+                    createTracer(targetPlayer)
+                    line = tracerLines[targetPlayer]
+                end
+                line.From = centerBottom
+                line.To = Vector2.new(pos.X, pos.Y)
+                line.Color = color
+                line.Visible = true
+            else
+                if tracerLines[targetPlayer] then
+                    tracerLines[targetPlayer].Visible = false
+                end
+            end
+        end
+    end
+end
+
+local function setupESP()
+    clearAllHighlights()
+    clearAllDrawings()
+    disconnectAll()
+    for _, targetPlayer in pairs(Players:GetPlayers()) do
+        applyHighlight(targetPlayer)
+        createNameText(targetPlayer)
+        createTracer(targetPlayer)
+    end
+    local function onPlayerAdded(targetPlayer)
+        applyHighlight(targetPlayer)
+        createNameText(targetPlayer)
+        createTracer(targetPlayer)
+        local charConn
+        charConn = targetPlayer.CharacterAdded:Connect(function()
+            applyHighlight(targetPlayer)
+        end)
+        connections[targetPlayer] = charConn
+    end
+    local function onPlayerRemoving(targetPlayer)
+        removeHighlight(targetPlayer)
+        removeNameText(targetPlayer)
+        removeTracer(targetPlayer)
+        if connections[targetPlayer] then
+            connections[targetPlayer]:Disconnect()
+            connections[targetPlayer] = nil
+        end
+    end
+    connections.PlayerAdded = Players.PlayerAdded:Connect(onPlayerAdded)
+    connections.PlayerRemoving = Players.PlayerRemoving:Connect(onPlayerRemoving)
+    for _, targetPlayer in pairs(Players:GetPlayers()) do
+        if not connections[targetPlayer] then
+            local charConn
+            charConn = targetPlayer.CharacterAdded:Connect(function()
+                applyHighlight(targetPlayer)
+            end)
+            connections[targetPlayer] = charConn
+        end
+    end
+    RunService:BindToRenderStep("ESPRender", Enum.RenderPriority.Camera.Value, updateESP)
+end
+
+local function disableESP()
+    clearAllHighlights()
+    clearAllDrawings()
+    disconnectAll()
+    RunService:UnbindFromRenderStep("ESPRender")
+end
+
+ESPTab:Toggle({
+    Title = "Activar ESP",
+    Default = false,
+    Callback = function(value)
+        espEnabled = value
+        if espEnabled then
+            setupESP()
+        else
+            disableESP()
+        end
+    end
+})
+
+ESPTab:Toggle({
+    Title = "Mostrar nombres",
+    Default = false,
+    Callback = function(value)
+        showNames = value
+        if not espEnabled then return end
+        for targetPlayer in pairs(nameTexts) do
+            if nameTexts[targetPlayer] then
+                nameTexts[targetPlayer].Visible = value
+            end
+        end
+    end
+})
+
+ESPTab:Toggle({
+    Title = "Mostrar tracers (líneas)",
+    Default = false,
+    Callback = function(value)
+        showTracers = value
+        if not espEnabled then return end
+        for targetPlayer in pairs(tracerLines) do
+            if tracerLines[targetPlayer] then
+                tracerLines[targetPlayer].Visible = value
+            end
+        end
+    end
+})
+
+ESPTab:Toggle({
+    Title = "Colores por equipo (rojo enemigo, verde aliado)",
+    Default = true,
+    Callback = function(value)
+        teamColors = value
+        if not espEnabled then return end
+        for targetPlayer in pairs(highlightList) do
+            if highlightList[targetPlayer] then
+                highlightList[targetPlayer].FillColor = getPlayerColor(targetPlayer)
+            end
+            if nameTexts[targetPlayer] then
+                nameTexts[targetPlayer].Color = getPlayerColor(targetPlayer)
+            end
+            if tracerLines[targetPlayer] then
+                tracerLines[targetPlayer].Color = getPlayerColor(targetPlayer)
+            end
+        end
+    end
+})
